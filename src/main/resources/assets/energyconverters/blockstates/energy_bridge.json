@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "casing": "energyconverters:blocks/energy_bridge_casing",
+      "core": "energyconverters:blocks/energy_bridge_core"
+    }
+  },
+  "variants": {
+    "normal": {
+      "model": "energyconverters:energy_bridge"
+    },
+    "inventory": {
+      "model": "energyconverters:energy_bridge"
+    }
+  }
+}
