@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.xalcon.energyconverters.common.ModProxy;
 import net.xalcon.energyconverters.common.init.ModBlocks;
+import net.xalcon.energyconverters.common.init.ModTileEntities;
 
 @Mod(modid = EnergyConvertersMod.MOD_ID, version = EnergyConvertersMod.VERSION)
 public class EnergyConvertersMod
@@ -20,5 +21,6 @@ public class EnergyConvertersMod
     public void preInit(FMLPreInitializationEvent event)
     {
         ModBlocks.init();
+        ModTileEntities.init();
     }
 }
