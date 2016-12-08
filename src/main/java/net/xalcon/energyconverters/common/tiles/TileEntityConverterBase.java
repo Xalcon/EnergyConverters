@@ -4,7 +4,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.xalcon.energyconverters.common.blocks.BlockEnergyBridge;
 import net.xalcon.energyconverters.common.init.ModBlocks;
 
 import java.lang.ref.WeakReference;

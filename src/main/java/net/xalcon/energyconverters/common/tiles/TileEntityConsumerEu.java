@@ -35,7 +35,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 		return super.writeToNBT(compound);
 	}
 
-	public void onLoaded()
+	private void onLoaded()
 	{
 		System.out.println("onLoad (isRemote: "+this.worldObj.isRemote+")");
 		super.onLoad();

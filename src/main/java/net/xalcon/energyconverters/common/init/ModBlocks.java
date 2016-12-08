@@ -16,9 +16,10 @@ public class ModBlocks
     public static void init()
     {
         EnergyBridge = register(new BlockEnergyBridge());
-        ProducerEu = register(new BlockProducerEu());
-        BlockConsumerEu block = new BlockConsumerEu();
-        ConsumerEu = register(block, new ItemBlockTieredVoltage(block));
+        ProducerEu = new BlockProducerEu();
+        register(ProducerEu, new ItemBlockTieredVoltage(ProducerEu));
+        ConsumerEu = new BlockConsumerEu();
+        register(ConsumerEu, new ItemBlockTieredVoltage(ConsumerEu));
 
         ProducerRf = register(new BlockProducerRf());
         ConsumerRf = register(new BlockConsumerRf());

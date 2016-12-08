@@ -1,12 +1,8 @@
 package net.xalcon.energyconverters.common.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class ItemBlockTieredVoltage extends ItemBlock
 {
@@ -24,7 +20,7 @@ public class ItemBlockTieredVoltage extends ItemBlock
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + BlockConsumerEu.EnumTypeVoltage.values()[stack.getMetadata()].getName();
+		return super.getUnlocalizedName(stack) + "." + EnumTypeVoltage.values()[stack.getMetadata()].getName();
 	}
 
 
