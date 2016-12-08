@@ -17,7 +17,8 @@ public class ModBlocks
     {
         EnergyBridge = register(new BlockEnergyBridge());
         ProducerEu = register(new BlockProducerEu());
-        ConsumerEu = register(new BlockConsumerEu());
+        BlockConsumerEu block = new BlockConsumerEu();
+        ConsumerEu = register(block, new ItemBlockTieredVoltage(block));
 
         ProducerRf = register(new BlockProducerRf());
         ConsumerRf = register(new BlockConsumerRf());
@@ -26,6 +27,7 @@ public class ModBlocks
 
     private static <T extends BlockBase> T register(T block, ItemBlock itemBlock)
     {
+        itemBlock.setRegistryName(block.getRegistryName());
         GameRegistry.register(block);
         GameRegistry.register(itemBlock);
         block.setCreativeTab(CreativeTabEnergyConverters.Instance);
@@ -35,8 +37,6 @@ public class ModBlocks
 
     private static <T extends BlockBase> T register(T block)
     {
-        ItemBlock itemBlock = new ItemBlock(block);
-        itemBlock.setRegistryName(block.getRegistryName());
-        return register(block, itemBlock);
+        return register(block, new ItemBlock(block));
     }
 }

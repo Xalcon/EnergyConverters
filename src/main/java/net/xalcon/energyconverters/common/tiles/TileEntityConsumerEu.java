@@ -5,6 +5,7 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.info.Info;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,6 +16,24 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 {
 	private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
 	private boolean addedToNet;
+	private int tier;
+
+	public TileEntityConsumerEu() { }
+	public TileEntityConsumerEu(int tier) { this.tier = tier; }
+
+	@Override
+	public void readFromNBT(NBTTagCompound compound)
+	{
+		super.readFromNBT(compound);
+		this.tier = compound.getInteger("tier");
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
+	{
+		compound.setInteger("tier", this.tier);
+		return super.writeToNBT(compound);
+	}
 
 	public void onLoaded()
 	{
@@ -65,7 +84,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public int getSinkTier()
 	{
-		return 1;
+		return this.tier;
 	}
 
 	@Override

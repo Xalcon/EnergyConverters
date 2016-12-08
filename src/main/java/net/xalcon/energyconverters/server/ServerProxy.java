@@ -7,4 +7,7 @@ public class ServerProxy extends ModProxy
 {
     @Override
     public void registerItemRenderer(Item item, int meta, String id) { /* NOP */ }
+
+    @Override
+    public void registerItemRenderer(Item item, int meta, String id, String variant) { /* NOP */ }
 }

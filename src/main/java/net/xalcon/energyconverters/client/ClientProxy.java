@@ -13,4 +13,10 @@ public class ClientProxy extends ModProxy
     {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(EnergyConvertersMod.MOD_ID + ":" + id, "inventory"));
     }
+
+    @Override
+    public void registerItemRenderer(Item item, int meta, String id, String variant)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(EnergyConvertersMod.MOD_ID + ":" + id, variant));
+    }
 }
