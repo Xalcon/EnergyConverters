@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.xalcon.energyconverters.common.blocks.EnumTypeVoltage;
 
 public class ModRecipes
 {
@@ -74,14 +75,19 @@ public class ModRecipes
 					'G', "ingotGold",
 					'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
 
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, 0), new ItemStack(ModBlocks.ProducerEu, 1, 0));
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, 0), new ItemStack(ModBlocks.ConsumerEu, 1, 0));
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, 1), new ItemStack(ModBlocks.ProducerEu, 1, 1));
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, 1), new ItemStack(ModBlocks.ConsumerEu, 1, 1));
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, 2), new ItemStack(ModBlocks.ProducerEu, 1, 2));
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, 2), new ItemStack(ModBlocks.ConsumerEu, 1, 2));
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, 3), new ItemStack(ModBlocks.ProducerEu, 1, 3));
-			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, 3), new ItemStack(ModBlocks.ConsumerEu, 1, 3));
+			GameRegistry.addRecipe(new ShapedOreRecipe(
+					new ItemStack(ModBlocks.ProducerEu, 1, 4),
+					"STS", "TMT", "ScS",
+					'S', "blockIron",
+					'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 80),
+					'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
+					'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
+
+			for(EnumTypeVoltage t : EnumTypeVoltage.values())
+			{
+				GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()));
+				GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()));
+			}
 		}
 	}
 }

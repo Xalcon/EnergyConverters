@@ -15,6 +15,8 @@ public class BlockBase extends Block
         this.internalName = name;
         setUnlocalizedName(this.internalName);
         setRegistryName(this.internalName);
+        this.setHardness(2);
+        this.setResistance(5);
     }
 
     public void registerItemModel(ItemBlock itemBlock)
