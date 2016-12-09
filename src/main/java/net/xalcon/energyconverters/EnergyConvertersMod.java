@@ -3,9 +3,11 @@ package net.xalcon.energyconverters;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.xalcon.energyconverters.common.ModProxy;
 import net.xalcon.energyconverters.common.init.ModBlocks;
+import net.xalcon.energyconverters.common.init.ModRecipes;
 import net.xalcon.energyconverters.common.init.ModTileEntities;
 
 @Mod(modid = EnergyConvertersMod.MOD_ID, version = EnergyConvertersMod.VERSION)
@@ -22,5 +24,11 @@ public class EnergyConvertersMod
     {
         ModBlocks.init();
         ModTileEntities.init();
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        ModRecipes.init();
     }
 }
