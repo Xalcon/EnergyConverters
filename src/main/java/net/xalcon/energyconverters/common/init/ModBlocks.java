@@ -1,6 +1,7 @@
 package net.xalcon.energyconverters.common.init;
 
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.xalcon.energyconverters.common.CreativeTabEnergyConverters;
 import net.xalcon.energyconverters.common.blocks.*;
@@ -16,10 +17,14 @@ public class ModBlocks
     public static void init()
     {
         EnergyBridge = register(new BlockEnergyBridge());
-        ProducerEu = new BlockProducerEu();
-        register(ProducerEu, new ItemBlockTieredVoltage(ProducerEu));
-        ConsumerEu = new BlockConsumerEu();
-        register(ConsumerEu, new ItemBlockTieredVoltage(ConsumerEu));
+        if(Loader.isModLoaded("IC2"))
+        {
+            ProducerEu = new BlockProducerEu();
+            register(ProducerEu, new ItemBlockTieredVoltage(ProducerEu));
+            ConsumerEu = new BlockConsumerEu();
+            register(ConsumerEu, new ItemBlockTieredVoltage(ConsumerEu));
+        }
+
 
         ProducerRf = register(new BlockProducerRf());
         ConsumerRf = register(new BlockConsumerRf());

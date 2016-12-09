@@ -1,16 +1,17 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "energyconverters",
+  "name": "Energy Converters",
+  "description": "A mod to freely convert between IC2 EU and RF power",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
+  "authorList": ["xalcon"],
   "credits": "The Forge and FML guys, for making this example",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["ic2"],
+  "useDependencyInformation": "true"
 }
 ]
