@@ -19,15 +19,30 @@ public class ModRecipes
 				'B', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars")),
 				'E', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "ender_eye"))));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-				new ItemStack(ModBlocks.ProducerRf),
-				"SCS", "PMG", "SDS",
-				'S', "stone",
-				'C', Item.REGISTRY.getObject(new ResourceLocation("enderio", "itemPowerConduit")),
-				'P', Item.REGISTRY.getObject(new ResourceLocation("enderio", "blockStirlingGenerator")),
-				'M', Item.REGISTRY.getObject(new ResourceLocation("enderio", "itemMachinePart")),
-				'G', "ingotGold",
-				'D', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("enderio", "itemBasicCapacitor")), 1, 1)));
+		if(Loader.isModLoaded("EnderIO"))
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(
+					new ItemStack(ModBlocks.ProducerRf),
+					"SCS", "PMG", "SDS",
+					'S', "stone",
+					'C', Item.REGISTRY.getObject(new ResourceLocation("enderio", "itemPowerConduit")),
+					'P', Item.REGISTRY.getObject(new ResourceLocation("enderio", "blockStirlingGenerator")),
+					'M', Item.REGISTRY.getObject(new ResourceLocation("enderio", "itemMachinePart")),
+					'G', "ingotGold",
+					'D', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("enderio", "itemBasicCapacitor")), 1, 1)));
+		}
+		else
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(
+					new ItemStack(ModBlocks.ProducerRf),
+					"SIS", "FBG", "SbS",
+					'S', "stone",
+					'I', "ingotIron",
+					'F', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "furnace")),
+					'B', "blockIron",
+					'G', "ingotGold",
+					'b', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars"))));
+		}
 
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerRf), ModBlocks.ProducerRf);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerRf), ModBlocks.ConsumerRf);
