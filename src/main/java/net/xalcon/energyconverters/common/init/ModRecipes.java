@@ -1,5 +1,6 @@
 package net.xalcon.energyconverters.common.init;
 
+import ic2.api.item.IC2Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -53,7 +54,7 @@ public class ModRecipes
 					new ItemStack(ModBlocks.ProducerEu, 1, 0),
 					"SCS", "TMG", "ScS",
 					'S', "stone",
-					'C', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "cable")), 1, 0),
+					'C', IC2Items.getItem("cable", "type:tin,insulation:1"),
 					'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 77),
 					'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
 					'G', "ingotGold",
@@ -64,7 +65,7 @@ public class ModRecipes
 					new ItemStack(ModBlocks.ProducerEu, 1, 1),
 					"SCS", "TMG", "ScS",
 					'S', "stone",
-					'C', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "cable")), 1, 2),
+					'C', IC2Items.getItem("cable", "type:copper,insulation:1"),
 					'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 78),
 					'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
 					'G', "ingotGold",
@@ -74,7 +75,7 @@ public class ModRecipes
 					new ItemStack(ModBlocks.ProducerEu, 1, 2),
 					"SCS", "TMG", "ScS",
 					'S', "stone",
-					'C', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "cable")), 1, 1),
+					'C', IC2Items.getItem("cable", "type:gold,insulation:2"),
 					'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 79),
 					'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
 					'G', "ingotGold",
@@ -84,7 +85,7 @@ public class ModRecipes
 					new ItemStack(ModBlocks.ProducerEu, 1, 3),
 					"SCS", "TMG", "ScS",
 					'S', "stone",
-					'C', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "cable")), 1, 3),
+					'C',  IC2Items.getItem("cable", "type:iron,insulation:3"),
 					'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 80),
 					'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
 					'G', "ingotGold",
@@ -92,8 +93,9 @@ public class ModRecipes
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(
 					new ItemStack(ModBlocks.ProducerEu, 1, 4),
-					"STS", "TMT", "ScS",
+					"SCS", "TMT", "ScS",
 					'S', "blockIron",
+					'C',  IC2Items.getItem("cable", "type:glass,insulation:0"),
 					'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 80),
 					'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
 					'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
