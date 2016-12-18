@@ -1,8 +1,10 @@
 package net.xalcon.energyconverters.common.tiles;
 
-public abstract class TileEntityEnergyConvertersConsumer extends TileEntityConverterBase
+import net.xalcon.energyconverters.common.energy.IEnergyBridgeInputAccessProvider;
+
+public abstract class TileEntityEnergyConvertersConsumer extends TileEntityConverterBase implements IEnergyBridgeInputAccessProvider
 {
-	protected double addEnergyToBridge(double amount, boolean simulate)
+	public double addEnergyToBridge(double amount, boolean simulate)
 	{
 		TileEntityEnergyBridge energyBridge = getEnergyBridge();
 		if(energyBridge == null) return 0;

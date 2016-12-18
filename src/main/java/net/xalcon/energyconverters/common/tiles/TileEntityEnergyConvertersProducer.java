@@ -1,22 +1,24 @@
 package net.xalcon.energyconverters.common.tiles;
 
-public abstract class TileEntityEnergyConvertersProducer extends TileEntityConverterBase
+import net.xalcon.energyconverters.common.energy.IEnergyBridgeOutputAccessProvider;
+
+public abstract class TileEntityEnergyConvertersProducer extends TileEntityConverterBase implements IEnergyBridgeOutputAccessProvider
 {
-	protected double retrieveEnergyFromBridge(double maxAmount, boolean simulate)
+	public double retrieveEnergyFromBridge(double maxAmount, boolean simulate)
 	{
 		TileEntityEnergyBridge energyBridge = getEnergyBridge();
 		if(energyBridge == null) return 0;
 		return energyBridge.getEnergy(maxAmount, simulate);
 	}
 
-	protected double getAvailableEnergyFromBridge()
+	public double getAvailableEnergyFromBridge()
 	{
 		TileEntityEnergyBridge energyBridge = getEnergyBridge();
 		if(energyBridge == null) return 0;
 		return energyBridge.getStoredEnergy();
 	}
 
-	protected double getBridgeEnergyStoredMax()
+	public double getBridgeEnergyStoredMax()
 	{
 		TileEntityEnergyBridge energyBridge = getEnergyBridge();
 		if(energyBridge == null) return 0;

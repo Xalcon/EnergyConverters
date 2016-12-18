@@ -13,6 +13,8 @@ public class ModBlocks
     public static BlockConsumerEu ConsumerEu;
     public static BlockProducerRf ProducerRf;
     public static BlockConsumerRf ConsumerRf;
+    public static BlockTeslaProducer ProducerTesla;
+    public static BlockTeslaConsumer ConsumerTesla;
 
     public static void init()
     {
@@ -25,6 +27,11 @@ public class ModBlocks
             register(ConsumerEu, new ItemBlockTieredVoltage(ConsumerEu));
         }
 
+        if(Loader.isModLoaded("tesla"))
+        {
+            ProducerTesla = register(new BlockTeslaProducer());
+            ConsumerTesla = register(new BlockTeslaConsumer());
+        }
 
         ProducerRf = register(new BlockProducerRf());
         ConsumerRf = register(new BlockConsumerRf());
