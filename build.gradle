@@ -40,6 +40,9 @@ repositories {
         name = "ic2"
         url = "http://maven.ic2.player.to/"
     }
+    maven {
+        url 'http://maven.epoxide.xyz'
+    }
 }
 
 dependencies {
@@ -64,6 +67,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+    compile "net.darkhax.tesla:Tesla:${tesla_version}"
 }
 
 processResources

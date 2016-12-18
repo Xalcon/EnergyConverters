@@ -11,7 +11,7 @@
   "credits": "The Forge and FML guys, for making this example",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": ["ic2"],
+  "dependencies": ["ic2", "tesla"],
   "useDependencyInformation": "true"
 }
 ]

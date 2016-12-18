@@ -106,5 +106,20 @@ public class ModRecipes
 				GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()));
 			}
 		}
+
+		if(Loader.isModLoaded("tesla"))
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(
+					new ItemStack(ModBlocks.ProducerTesla),
+					"SQS", "FBG", "SbS",
+					'S', "stone",
+					'Q', "gemQuartz",
+					'F', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "furnace")),
+					'B', "blockIron",
+					'G', "ingotGold",
+					'b', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars"))));
+
+			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTesla), ModBlocks.ProducerTesla);
+		}
 	}
 }
