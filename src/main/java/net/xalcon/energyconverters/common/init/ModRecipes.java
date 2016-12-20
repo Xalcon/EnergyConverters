@@ -120,6 +120,7 @@ public class ModRecipes
 					'b', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars"))));
 
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTesla), ModBlocks.ProducerTesla);
+			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTesla), ModBlocks.ConsumerTesla);
 		}
 	}
 }
