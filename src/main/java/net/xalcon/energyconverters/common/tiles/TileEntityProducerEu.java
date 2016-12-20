@@ -83,7 +83,7 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public double getOfferedEnergy()
 	{
-		return Math.min(getAvailableEnergyFromBridge() / EU_TO_EC_CONVERSION_FACTOR, this.maxEnergyUnits);
+		return Math.min(getBridgeEnergyStored() / EU_TO_EC_CONVERSION_FACTOR, this.maxEnergyUnits);
 	}
 
 	@Optional.Method(modid = "IC2")

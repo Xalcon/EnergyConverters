@@ -1,5 +1,6 @@
 package net.xalcon.energyconverters.common.tiles;
 
+import ic2.api.energy.EnergyNet;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
@@ -12,21 +13,30 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 
-@Optional.Interface(iface="ic2.api.energy.tile.IEnergySink", modid="IC2", striprefs=true)
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2", striprefs = true)
 public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer implements ITickable, IEnergySink
 {
 	private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
 	private boolean addedToNet;
 	private int tier;
+	private double tierEnergyMax;
 
-	public TileEntityConsumerEu() { }
-	public TileEntityConsumerEu(int tier) { this.tier = tier; }
+	public TileEntityConsumerEu()
+	{
+	}
+
+	public TileEntityConsumerEu(int tier)
+	{
+		this.tier = tier;
+		this.tierEnergyMax = EnergyNet.instance.getPowerFromTier(this.tier);
+	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
 		this.tier = compound.getInteger("tier");
+		this.tierEnergyMax = EnergyNet.instance.getPowerFromTier(this.tier);
 	}
 
 	@Override
@@ -38,9 +48,9 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 
 	private void onLoaded()
 	{
-		System.out.println("onLoad (isRemote: "+this.worldObj.isRemote+")");
+		System.out.println("onLoad (isRemote: " + this.worldObj.isRemote + ")");
 		super.onLoad();
-		if(this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
+		if (this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 		this.addedToNet = true;
 	}
@@ -48,7 +58,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void invalidate()
 	{
-		System.out.println("invalidate (isRemote: "+this.worldObj.isRemote+")");
+		System.out.println("invalidate (isRemote: " + this.worldObj.isRemote + ")");
 		super.invalidate();
 		onChunkUnload();
 	}
@@ -56,7 +66,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void onChunkUnload()
 	{
-		System.out.println("OnChunkUnload (isRemote: "+this.worldObj.isRemote+")");
+		System.out.println("OnChunkUnload (isRemote: " + this.worldObj.isRemote + ")");
 		super.onChunkUnload();
 		if (this.addedToNet && Info.isIc2Available())
 		{
@@ -69,8 +79,8 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void update()
 	{
-		if(this.worldObj.isRemote) return;
-		if(!addedToNet) onLoaded();
+		if (this.worldObj.isRemote) return;
+		if (!addedToNet) onLoaded();
 	}
 	//endregion
 
@@ -80,7 +90,12 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public double getDemandedEnergy()
 	{
-		return 128;
+		double demand = this.getBridgeEnergyStoredMax() - this.getBridgeEnergyStored();
+		if (demand > 0)
+		{
+			return Math.min(demand, this.tierEnergyMax);
+		}
+		return 0;
 	}
 
 	@Optional.Method(modid = "IC2")

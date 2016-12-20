@@ -10,4 +10,18 @@ public abstract class TileEntityEnergyConvertersConsumer extends TileEntityConve
 		if(energyBridge == null) return 0;
 		return energyBridge.addEnergy(amount, simulate);
 	}
+
+	public double getBridgeEnergyStored()
+	{
+		TileEntityEnergyBridge energyBridge = getEnergyBridge();
+		if(energyBridge == null) return 0;
+		return energyBridge.getStoredEnergy();
+	}
+
+	public double getBridgeEnergyStoredMax()
+	{
+		TileEntityEnergyBridge energyBridge = getEnergyBridge();
+		if(energyBridge == null) return 0;
+		return energyBridge.getStoredEnergyMax();
+	}
 }

@@ -37,7 +37,7 @@ public class TileEntityTeslaProducer extends TileEntityEnergyConvertersProducer 
 		if(worldObj.isRemote) return;
 		for(EnumFacing f : EnumFacing.values())
 		{
-			long available = (long) this.getAvailableEnergyFromBridge();
+			long available = (long) this.getBridgeEnergyStored();
 			if(available < 1) break;
 
 			TileEntity te = worldObj.getTileEntity(pos.offset(f));

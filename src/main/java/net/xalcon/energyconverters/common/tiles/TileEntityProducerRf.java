@@ -18,7 +18,7 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public int getEnergyStored(EnumFacing from)
 	{
-		return (int) this.getAvailableEnergyFromBridge();
+		return (int) this.getBridgeEnergyStored();
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 				IEnergyReceiver rcv = (IEnergyReceiver) te;
 				if (rcv.canConnectEnergy(facing.getOpposite()))
 				{
-					int o = (int) this.getAvailableEnergyFromBridge();
+					int o = (int) this.getBridgeEnergyStored();
 					int v = rcv.receiveEnergy(facing.getOpposite(), o, false);
 					this.retrieveEnergyFromBridge(v, false);
 				}

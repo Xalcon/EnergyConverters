@@ -11,7 +11,7 @@ public abstract class TileEntityEnergyConvertersProducer extends TileEntityConve
 		return energyBridge.getEnergy(maxAmount, simulate);
 	}
 
-	public double getAvailableEnergyFromBridge()
+	public double getBridgeEnergyStored()
 	{
 		TileEntityEnergyBridge energyBridge = getEnergyBridge();
 		if(energyBridge == null) return 0;
