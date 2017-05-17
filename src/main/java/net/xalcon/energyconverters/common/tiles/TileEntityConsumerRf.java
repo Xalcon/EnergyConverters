@@ -5,6 +5,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.xalcon.energyconverters.common.energy.ForgeEnergyConsumptionHandler;
+import reborncore.api.power.EnumPowerTier;
+import reborncore.api.power.IEnergyInterfaceTile;
 
 import javax.annotation.Nullable;
 

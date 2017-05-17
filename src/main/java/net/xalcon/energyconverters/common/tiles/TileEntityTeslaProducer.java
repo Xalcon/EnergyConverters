@@ -17,7 +17,7 @@ public class TileEntityTeslaProducer extends TileEntityEnergyConvertersProducer 
 	@Override
 	@Nonnull
 	@SuppressWarnings("unchecked")
-	public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing)
+	public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing)
 	{
 		if (capability == TeslaCapabilities.CAPABILITY_PRODUCER)
 			return (T) this.teslaProducer;
@@ -26,7 +26,7 @@ public class TileEntityTeslaProducer extends TileEntityEnergyConvertersProducer 
 	}
 
 	@Override
-	public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing facing)
+	public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing)
 	{
 		return capability == TeslaCapabilities.CAPABILITY_PRODUCER || super.hasCapability(capability, facing);
 	}

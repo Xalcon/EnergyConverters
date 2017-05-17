@@ -23,5 +23,11 @@ public class ModTileEntities
 			GameRegistry.registerTileEntity(TileEntityTeslaProducer.class, "tileentity_producer_tesla");
 			GameRegistry.registerTileEntity(TileEntityTeslaConsumer.class, "tileentity_consumer_tesla");
 		}
+
+		if (Loader.isModLoaded("techreborn"))
+		{
+			GameRegistry.registerTileEntity(TileEntityTechRebornProducer.class, "tileentity_producer_tb");
+			GameRegistry.registerTileEntity(TileEntityTechRebornConsumer.class, "tileentity_consumer_tb");
+		}
 	}
 }

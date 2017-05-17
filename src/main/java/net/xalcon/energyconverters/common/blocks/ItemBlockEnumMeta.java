@@ -3,13 +3,17 @@ package net.xalcon.energyconverters.common.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 
-public class ItemBlockTieredVoltage extends ItemBlock
+public class ItemBlockEnumMeta<T extends Enum<T> & IStringSerializable> extends ItemBlock
 {
-	public ItemBlockTieredVoltage(Block block)
+	private T[] values;
+
+	public ItemBlockEnumMeta(Block block, T[] values)
 	{
 		super(block);
 		this.setHasSubtypes(true);
+		this.values = values;
 	}
 
 	@Override
@@ -20,7 +24,7 @@ public class ItemBlockTieredVoltage extends ItemBlock
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + EnumTypeVoltage.values()[stack.getMetadata()].getName();
+		return super.getUnlocalizedName(stack) + "." + this.values[stack.getMetadata()].getName();
 	}
 
 
