@@ -1,6 +1,6 @@
 package net.xalcon.energyconverters.common.energy;
 
-public interface IEnergyBridgeInputAccessProvider
+public interface IEnergyBridgeInputAccessProvider extends IEnergyBridge
 {
 	double addEnergyToBridge(double amount, boolean simulate);
 }
