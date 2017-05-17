@@ -1,22 +1,19 @@
 package net.xalcon.energyconverters.common.tiles;
 
-import net.darkhax.tesla.api.ITeslaConsumer;
-import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Optional;
+import reborncore.api.IListInfoProvider;
 import reborncore.api.power.EnumPowerTier;
 import reborncore.api.power.IEnergyInterfaceTile;
-import reborncore.common.powerSystem.tesla.TeslaManager;
+
+import java.util.List;
 
 @Optional.Interface(iface = "reborncore.api.power.IEnergyInterfaceTile", modid = "reborncore", striprefs = true)
-public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProducer implements ITickable, IEnergyInterfaceTile
+public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProducer implements ITickable, IEnergyInterfaceTile, IListInfoProvider
 {
 	private EnumPowerTier tier;
 
@@ -51,7 +48,7 @@ public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProd
 	public void update()
 	{
 		if (getEnergy() > 0)
-		{ //Tesla or IC2 should handle this if enabled, so only do this without tesla
+		{
 			for (EnumFacing side : EnumFacing.values())
 			{
 				if (this.canProvideEnergy(side))
@@ -124,19 +121,20 @@ public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProd
 	@Override
 	public boolean canUseEnergy(double v)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public double useEnergy(double v)
 	{
-		return 0;
+		return this.useEnergy(v, false);
 	}
 
 	@Override
 	public double useEnergy(double v, boolean b)
 	{
-		return 0;
+		TileEntityEnergyBridge bridge = this.getEnergyBridge();
+		return bridge == null ? 0 : bridge.getEnergy(v, b);
 	}
 
 	@Override
@@ -168,4 +166,7 @@ public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProd
 	{
 		return this.tier;
 	}
+
+	@Override
+	public void addInfo(List<String> list, boolean b) { }
 }

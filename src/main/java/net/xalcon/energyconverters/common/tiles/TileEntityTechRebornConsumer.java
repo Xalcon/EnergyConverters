@@ -2,9 +2,11 @@ package net.xalcon.energyconverters.common.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.common.Optional;
 import reborncore.api.power.EnumPowerTier;
 import reborncore.api.power.IEnergyInterfaceTile;
 
+@Optional.Interface(iface = "reborncore.api.power.IEnergyInterfaceTile", modid = "reborncore", striprefs = true)
 public class TileEntityTechRebornConsumer extends TileEntityConverterBase implements IEnergyInterfaceTile
 {
 	private EnumPowerTier tier;
