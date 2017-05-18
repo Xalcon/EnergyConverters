@@ -13,7 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 
-@Optional.Interface(iface="ic2.api.energy.tile.IEnergySource", modid="IC2", striprefs=true)
+@Optional.Interface(iface="ic2.api.energy.tile.IEnergySource", modid="ic2", striprefs=true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource
 {
 	private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
@@ -44,7 +44,7 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 
 	private void onLoaded()
 	{
-		System.out.println("onLoad (isRemote: "+this.worldObj.isRemote+")");
+		System.out.println("onLoad (isRemote: "+this.getWorld().isRemote+")");
 		super.onLoad();
 		if(this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -55,7 +55,7 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void invalidate()
 	{
-		System.out.println("invalidate (isRemote: "+this.worldObj.isRemote+")");
+		System.out.println("invalidate (isRemote: "+this.getWorld().isRemote+")");
 		super.invalidate();
 		onChunkUnload();
 	}
@@ -63,7 +63,7 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void onChunkUnload()
 	{
-		System.out.println("OnChunkUnload (isRemote: "+this.worldObj.isRemote+")");
+		System.out.println("OnChunkUnload (isRemote: "+this.getWorld().isRemote+")");
 		super.onChunkUnload();
 		if (this.addedToNet && Info.isIc2Available())
 		{
@@ -75,32 +75,32 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void update()
 	{
-		if(this.worldObj.isRemote) return;
+		if(this.getWorld().isRemote) return;
 		if(!addedToNet) onLoaded();
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public double getOfferedEnergy()
 	{
 		return Math.min(getBridgeEnergyStored() / EU_TO_EC_CONVERSION_FACTOR, this.maxEnergyUnits);
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public void drawEnergy(double v)
 	{
 		this.retrieveEnergyFromBridge(v * EU_TO_EC_CONVERSION_FACTOR, false);
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public int getSourceTier()
 	{
 		return this.tier;
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor iEnergyAcceptor, EnumFacing enumFacing)
 	{

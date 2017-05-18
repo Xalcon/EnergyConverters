@@ -6,12 +6,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.xalcon.energyconverters.common.energy.ForgeEnergyProductionHandler;
-
-import javax.annotation.Nullable;
 
 public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer implements IEnergyProvider, ITickable
 {
@@ -45,7 +39,7 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 		for (EnumFacing facing : EnumFacing.VALUES)
 		{
 			BlockPos pos = this.pos.offset(facing);
-			TileEntity te = this.worldObj.getTileEntity(pos);
+			TileEntity te = this.getWorld().getTileEntity(pos);
 			if(te == null) continue;
 			if (te instanceof IEnergyReceiver)
 			{

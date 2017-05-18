@@ -1,6 +1,5 @@
 package net.xalcon.energyconverters.common.tiles;
 
-import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;

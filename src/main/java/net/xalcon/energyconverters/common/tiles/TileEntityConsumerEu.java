@@ -13,7 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 
-@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2", striprefs = true)
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2", striprefs = true)
 public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer implements ITickable, IEnergySink
 {
 	private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
@@ -48,7 +48,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 
 	private void onLoaded()
 	{
-		System.out.println("onLoad (isRemote: " + this.worldObj.isRemote + ")");
+		System.out.println("onLoad (isRemote: " + this.getWorld().isRemote + ")");
 		super.onLoad();
 		if (this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -58,7 +58,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void invalidate()
 	{
-		System.out.println("invalidate (isRemote: " + this.worldObj.isRemote + ")");
+		System.out.println("invalidate (isRemote: " + this.getWorld().isRemote + ")");
 		super.invalidate();
 		onChunkUnload();
 	}
@@ -66,7 +66,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void onChunkUnload()
 	{
-		System.out.println("OnChunkUnload (isRemote: " + this.worldObj.isRemote + ")");
+		System.out.println("OnChunkUnload (isRemote: " + this.getWorld().isRemote + ")");
 		super.onChunkUnload();
 		if (this.addedToNet && Info.isIc2Available())
 		{
@@ -79,14 +79,14 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void update()
 	{
-		if (this.worldObj.isRemote) return;
+		if (this.getWorld().isRemote) return;
 		if (!addedToNet) onLoaded();
 	}
 	//endregion
 
 
 	//region IEnergySink implementation
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public double getDemandedEnergy()
 	{
@@ -98,14 +98,14 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 		return 0;
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public int getSinkTier()
 	{
 		return this.tier;
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public double injectEnergy(EnumFacing enumFacing, double amount, double tier)
 	{
@@ -113,7 +113,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 		return amount - (this.addEnergyToBridge(amount * EU_TO_EC_CONVERSION_FACTOR, false) / EU_TO_EC_CONVERSION_FACTOR);
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public boolean acceptsEnergyFrom(IEnergyEmitter iEnergyEmitter, EnumFacing enumFacing)
 	{

@@ -1,7 +1,5 @@
 package net.xalcon.energyconverters.common.tiles;
 
-import cofh.api.energy.IEnergyProvider;
-import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -35,7 +33,7 @@ public class TileEntityProducerFe extends TileEntityEnergyConvertersProducer imp
 		for (EnumFacing facing : EnumFacing.VALUES)
 		{
 			BlockPos pos = this.pos.offset(facing);
-			TileEntity te = this.worldObj.getTileEntity(pos);
+			TileEntity te = this.getWorld().getTileEntity(pos);
 			if(te == null) continue;
 			if (te.hasCapability(CapabilityEnergy.ENERGY, facing.getOpposite()))
 			{

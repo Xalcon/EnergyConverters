@@ -26,9 +26,9 @@ public abstract class TileEntityConverterBase extends TileEntity
 			for(EnumFacing direction : EnumFacing.VALUES)
 			{
 				BlockPos pos = this.pos.offset(direction);
-				IBlockState blockState = this.worldObj.getBlockState(pos);
+				IBlockState blockState = this.getWorld().getBlockState(pos);
 				if(blockState.getBlock() != ModBlocks.EnergyBridge) continue;
-				TileEntity te = this.worldObj.getTileEntity(pos);
+				TileEntity te = this.getWorld().getTileEntity(pos);
 				if(te == null || !(te instanceof TileEntityEnergyBridge))
 				{
 					System.out.println("Expected TileEntityEnergyBridge @ " + pos + " but found " + te + ". Try replacing the affected block");

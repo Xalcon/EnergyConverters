@@ -14,7 +14,7 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TileEntityProducerFe.class, "tileentity_producer_fe");
 		GameRegistry.registerTileEntity(TileEntityConsumerFe.class, "tileentity_consumer_fe");
 
-		if (Loader.isModLoaded("IC2"))
+		if (Loader.isModLoaded("ic2"))
 		{
 			GameRegistry.registerTileEntity(TileEntityProducerEu.class, "tileentity_producer_eu");
 			GameRegistry.registerTileEntity(TileEntityConsumerEu.class, "tileentity_consumer_eu");
@@ -24,12 +24,6 @@ public class ModTileEntities
 		{
 			GameRegistry.registerTileEntity(TileEntityTeslaProducer.class, "tileentity_producer_tesla");
 			GameRegistry.registerTileEntity(TileEntityTeslaConsumer.class, "tileentity_consumer_tesla");
-		}
-
-		if (Loader.isModLoaded("techreborn"))
-		{
-			GameRegistry.registerTileEntity(TileEntityTechRebornProducer.class, "tileentity_producer_tb");
-			GameRegistry.registerTileEntity(TileEntityTechRebornConsumer.class, "tileentity_consumer_tb");
 		}
 	}
 }
