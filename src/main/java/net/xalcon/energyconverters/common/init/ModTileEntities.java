@@ -11,6 +11,8 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TileEntityEnergyBridge.class, "tileentity_energy_bridge");
 		GameRegistry.registerTileEntity(TileEntityProducerRf.class, "tileentity_producer_rf");
 		GameRegistry.registerTileEntity(TileEntityConsumerRf.class, "tileentity_consumer_rf");
+		GameRegistry.registerTileEntity(TileEntityProducerFe.class, "tileentity_producer_fe");
+		GameRegistry.registerTileEntity(TileEntityConsumerFe.class, "tileentity_consumer_fe");
 
 		if (Loader.isModLoaded("IC2"))
 		{

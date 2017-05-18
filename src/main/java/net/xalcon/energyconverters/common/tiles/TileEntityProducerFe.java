@@ -13,30 +13,20 @@ import net.xalcon.energyconverters.common.energy.ForgeEnergyProductionHandler;
 
 import javax.annotation.Nullable;
 
-public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer implements IEnergyProvider, ITickable
+public class TileEntityProducerFe extends TileEntityEnergyConvertersProducer implements ITickable
 {
+	private ForgeEnergyProductionHandler productionHandler = new ForgeEnergyProductionHandler(this);
+
 	@Override
-	public boolean canConnectEnergy(EnumFacing from)
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
 	{
-		return true;
+		return capability == CapabilityEnergy.ENERGY || super.hasCapability(capability, facing);
 	}
 
 	@Override
-	public int getEnergyStored(EnumFacing from)
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
 	{
-		return (int) this.getBridgeEnergyStored();
-	}
-
-	@Override
-	public int getMaxEnergyStored(EnumFacing from)
-	{
-		return (int) this.getBridgeEnergyStoredMax();
-	}
-
-	@Override
-	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate)
-	{
-		return (int) this.retrieveEnergyFromBridge(maxExtract, simulate);
+		return capability == CapabilityEnergy.ENERGY ? CapabilityEnergy.ENERGY.cast(this.productionHandler) : super.getCapability(capability, facing);
 	}
 
 	@Override
@@ -47,13 +37,13 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 			BlockPos pos = this.pos.offset(facing);
 			TileEntity te = this.worldObj.getTileEntity(pos);
 			if(te == null) continue;
-			if (te instanceof IEnergyReceiver)
+			if (te.hasCapability(CapabilityEnergy.ENERGY, facing.getOpposite()))
 			{
-				IEnergyReceiver rcv = (IEnergyReceiver) te;
-				if (rcv.canConnectEnergy(facing.getOpposite()))
+				IEnergyStorage energyStorage = te.getCapability(CapabilityEnergy.ENERGY, facing.getOpposite());
+				if (energyStorage != null && energyStorage.canReceive())
 				{
 					int o = (int) this.getBridgeEnergyStored();
-					int v = rcv.receiveEnergy(facing.getOpposite(), o, false);
+					int v = energyStorage.receiveEnergy(o, false);
 					this.retrieveEnergyFromBridge(v, false);
 				}
 			}

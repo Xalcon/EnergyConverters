@@ -18,6 +18,8 @@ public class ModBlocks
     public static BlockTeslaConsumer ConsumerTesla;
     public static BlockProducerTechReborn ProducerTechReborn;
     public static BlockConsumerTechReborn ConsumerTechReborn;
+    public static BlockProducerFe ProducerFe;
+    public static BlockConsumerFe ConsumerFe;
 
     public static void init()
     {
@@ -46,6 +48,9 @@ public class ModBlocks
 
         ProducerRf = register(new BlockProducerRf());
         ConsumerRf = register(new BlockConsumerRf());
+
+        ProducerFe = register(new BlockProducerFe());
+        ConsumerFe = register(new BlockConsumerFe());
     }
 
 

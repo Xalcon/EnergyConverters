@@ -116,8 +116,21 @@ public class ModRecipes
 					'b', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars"))));
 		}
 
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+				new ItemStack(ModBlocks.ProducerFe),
+				"SIS", "FBG", "SbS",
+				'S', "stone",
+				'I', "ingotIron",
+				'F', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "furnace")),
+				'B', "blockRedstone",
+				'G', "ingotGold",
+				'b', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars"))));
+
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerRf), ModBlocks.ProducerRf);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerRf), ModBlocks.ConsumerRf);
+		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerFe), ModBlocks.ProducerFe);
+		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerFe), ModBlocks.ConsumerFe);
 	}
 
 	private static void initIC2()
