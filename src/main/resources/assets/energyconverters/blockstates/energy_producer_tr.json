@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all",
+    "textures": {
+      "all": "energyconverters:blocks/energy_producer_tr0",
+      "particle": "#all"
+    }
+  },
+  "variants": {
+    "tier=low": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr0" } },
+    "tier=medium": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr1" } },
+    "tier=high": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr2" } },
+    "tier=extreme": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr3" } },
+    "tier=insane": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr4" } },
+    "tier=infinite": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr4" } }
+  }
+}

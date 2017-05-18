@@ -12,7 +12,7 @@ public class BlockProducerTechReborn extends BlockConverterTechRebornBase implem
 {
 	public BlockProducerTechReborn()
 	{
-		super(Material.IRON, "energy_producer_tb");
+		super(Material.IRON, "energy_producer_tr");
 	}
 
 	@Override
