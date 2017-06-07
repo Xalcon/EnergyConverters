@@ -17,6 +17,8 @@ public class ModBlocks
     public static BlockTeslaConsumer ConsumerTesla;
     public static BlockProducerFe ProducerFe;
     public static BlockConsumerFe ConsumerFe;
+    public static BlockProducerMj ProducerMj;
+    public static BlockConsumerMj ConsumerMj;
 
     public static void init()
     {
@@ -40,6 +42,12 @@ public class ModBlocks
 
         ProducerFe = register(new BlockProducerFe());
         ConsumerFe = register(new BlockConsumerFe());
+
+        if (Loader.isModLoaded("buildcraftenergy"))
+        {
+            ProducerMj = register(new BlockProducerMj());
+            ConsumerMj = register(new BlockConsumerMj());
+        }
     }
 
 

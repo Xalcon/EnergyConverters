@@ -16,6 +16,7 @@ public class ModRecipes
 		initBasic();
 		initTesla();
 		initIC2();
+		initBuildcraft();
 	}
 
 	public static void initBasic()
@@ -147,6 +148,24 @@ public class ModRecipes
 
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTesla), ModBlocks.ProducerTesla);
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTesla), ModBlocks.ConsumerTesla);
+		}
+	}
+
+	private static void initBuildcraft()
+	{
+		if(Loader.isModLoaded("buildcraftcore") && Loader.isModLoaded("buildcraftenergy") && Loader.isModLoaded("buildcrafttransport"))
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(
+					new ItemStack(ModBlocks.ProducerMj),
+					"SIS", "EPG", "SIS",
+					'S', "stone",
+					'I', Item.REGISTRY.getObject(new ResourceLocation("buildcraftcore", "gear_iron")),
+					'E', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("buildcraftcore", "engine")), 1, 1),
+					'P', Item.REGISTRY.getObject(new ResourceLocation("buildcrafttransport", "pipe_wood_item")),
+					'G', "ingotGold"));
+
+			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerMj), ModBlocks.ProducerMj);
+			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerMj), ModBlocks.ConsumerMj);
 		}
 	}
 }
