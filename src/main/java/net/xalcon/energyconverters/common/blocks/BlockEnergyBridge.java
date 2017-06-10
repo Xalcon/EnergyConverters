@@ -1,4 +1,23 @@
+/*
+ * A mod that allows conversion between EU, RF, Forge Energy, and Tesla.
+ * Copyright (C) 2017  Xalcon (https://github.com/Xalcon)
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see LICENSE.md at the root of the project.
+ */
 package net.xalcon.energyconverters.common.blocks;
+
+import javax.annotation.Nullable;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -14,18 +33,13 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.xalcon.energyconverters.common.tiles.TileEntityEnergyBridge;
 
-import javax.annotation.Nullable;
-
-public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
-{
-    public BlockEnergyBridge()
-    {
+public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider {
+    public BlockEnergyBridge() {
         super(Material.IRON, "energy_bridge");
     }
 
     @Override
-    public boolean isVisuallyOpaque()
-    {
+    public boolean isVisuallyOpaque() {
         return false;
     }
 
@@ -34,30 +48,26 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
         return BlockRenderLayer.TRANSLUCENT;
     }
 
-    public boolean isOpaqueCube(IBlockState state)
-    {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
-    public boolean isFullCube(IBlockState state)
-    {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        if(!worldIn.isRemote)
-        {
-            double amount = ((TileEntityEnergyBridge)worldIn.getTileEntity(pos)).getStoredEnergy();
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX,
+            float hitY, float hitZ) {
+        if (!worldIn.isRemote) {
+            double amount = ((TileEntityEnergyBridge) worldIn.getTileEntity(pos)).getStoredEnergy();
             playerIn.addChatComponentMessage(new TextComponentString("StoredAmount: " + amount));
         }
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityEnergyBridge();
     }
 }

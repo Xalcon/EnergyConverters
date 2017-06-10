@@ -1,3 +1,20 @@
+/*
+ * A mod that allows conversion between EU, RF, Forge Energy, and Tesla.
+ * Copyright (C) 2017  Xalcon (https://github.com/Xalcon)
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program.  If not, see LICENSE.md at the root of the project.
+ */
 package net.xalcon.energyconverters.common.init;
 
 import net.minecraft.item.ItemBlock;
@@ -5,10 +22,8 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.xalcon.energyconverters.common.CreativeTabEnergyConverters;
 import net.xalcon.energyconverters.common.blocks.*;
-import reborncore.api.power.EnumPowerTier;
 
-public class ModBlocks
-{
+public class ModBlocks {
     public static BlockEnergyBridge EnergyBridge;
     public static BlockProducerEu ProducerEu;
     public static BlockConsumerEu ConsumerEu;
@@ -21,25 +36,21 @@ public class ModBlocks
     public static BlockProducerFe ProducerFe;
     public static BlockConsumerFe ConsumerFe;
 
-    public static void init()
-    {
+    public static void init() {
         EnergyBridge = register(new BlockEnergyBridge());
-        if(Loader.isModLoaded("IC2"))
-        {
+        if (Loader.isModLoaded("IC2")) {
             ProducerEu = new BlockProducerEu();
             register(ProducerEu, new ItemBlockEnumMeta<>(ProducerEu, EnumTypeVoltage.values()));
             ConsumerEu = new BlockConsumerEu();
             register(ConsumerEu, new ItemBlockEnumMeta<>(ConsumerEu, EnumTypeVoltage.values()));
         }
 
-        if(Loader.isModLoaded("tesla"))
-        {
+        if (Loader.isModLoaded("tesla")) {
             ProducerTesla = register(new BlockTeslaProducer());
             ConsumerTesla = register(new BlockTeslaConsumer());
         }
 
-        if(Loader.isModLoaded("techreborn"))
-        {
+        if (Loader.isModLoaded("techreborn")) {
             ProducerTechReborn = new BlockProducerTechReborn();
             register(ProducerTechReborn, new ItemBlockEnumMeta<>(ProducerTechReborn, BlockConverterTechRebornBase.PowerTierMap.values()));
             ConsumerTechReborn = new BlockConsumerTechReborn();
@@ -53,9 +64,7 @@ public class ModBlocks
         ConsumerFe = register(new BlockConsumerFe());
     }
 
-
-    private static <T extends BlockBase> T register(T block, ItemBlock itemBlock)
-    {
+    private static <T extends BlockBase> T register(T block, ItemBlock itemBlock) {
         itemBlock.setRegistryName(block.getRegistryName());
         GameRegistry.register(block);
         GameRegistry.register(itemBlock);
@@ -64,8 +73,7 @@ public class ModBlocks
         return block;
     }
 
-    private static <T extends BlockBase> T register(T block)
-    {
+    private static <T extends BlockBase> T register(T block) {
         return register(block, new ItemBlock(block));
     }
 }
