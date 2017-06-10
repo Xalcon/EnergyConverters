@@ -1,10 +1,8 @@
 package net.xalcon.energyconverters;
 
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.xalcon.energyconverters.common.ModProxy;
@@ -16,7 +14,7 @@ import net.xalcon.energyconverters.common.init.ModTileEntities;
 public class EnergyConvertersMod
 {
     public static final String MOD_ID = "energyconverters";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "@VERSION@";
 
     @SidedProxy(clientSide = "net.xalcon.energyconverters.client.ClientProxy", serverSide = "net.xalcon.energyconverters.server.ServerProxy")
     public static ModProxy Proxy;

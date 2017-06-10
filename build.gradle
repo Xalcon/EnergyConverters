@@ -8,11 +8,10 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
 
 version = version_major + '.' + version_minor + '.' + version_patch + '.' + getBuildNumber()
-group= "net.xalcon.energyconverters" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "net.xalcon.energyconverters" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "energyconverters_" + mcversion
 
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
@@ -23,16 +22,9 @@ compileJava {
 minecraft {
     version = mcversion + "-" + forgeversion
     runDir = "run"
-    
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not allways work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = mcp_mappings
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     replace '@VERSION@', project.version
-    replace '@BUILD_NUMBER@', getBuildNumber()
 }
 
 repositories {
@@ -40,9 +32,7 @@ repositories {
         name = "ic2"
         url = "http://maven.ic2.player.to/"
     }
-    maven {
-        url 'http://maven.epoxide.xyz'
-    }
+    maven { url 'http://maven.epoxide.org' }
 	maven {
 		// location of the maven that hosts JEI files
 		name = "Progwml6 maven"
@@ -52,44 +42,25 @@ repositories {
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
     // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
     // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
     // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
-    compile "net.darkhax.tesla:Tesla:${tesla_version}"
-	deobfCompile "mezz.jei:jei_${mcversion}:${jei_version}:api"
+    
+    // If any of these dependencies are being marked as FAILED under "forgeGradleResovledDeobfProvided" run the "cleanCache" task.
+    deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+    deobfProvided "net.darkhax.tesla:Tesla:${tesla_version}"
+	deobfProvided "mezz.jei:jei_${mcversion}:${jei_version}:api"
 	
 	
-	deobfCompile("RebornCore:RebornCore-${mcversion}:${reborncore_version}:universal") {
+	deobfProvided("RebornCore:RebornCore-${mcversion}:${reborncore_version}:universal") {
 		transitive = false
 	}
-	deobfCompile("TechReborn:TechReborn-${mcversion}:${techreborn_version}:universal") {
+	deobfProvided("TechReborn:TechReborn-${mcversion}:${techreborn_version}:universal") {
 		transitive = false
 	}
-	
-	runtime "net.industrial-craft:industrialcraft-2:${ic2_version}:universal"
-	runtime "mezz.jei:jei_${mcversion}:${jei_version}"
 }
 
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
@@ -97,7 +68,6 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
