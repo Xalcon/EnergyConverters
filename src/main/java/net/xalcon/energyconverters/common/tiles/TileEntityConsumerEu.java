@@ -29,15 +29,13 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.common.Constants;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2", striprefs = true)
 public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer implements ITickable, IEnergySink {
-    private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
     private boolean addedToNet;
     private int tier;
     private double tierEnergyMax;
-
-    public TileEntityConsumerEu() {}
 
     public TileEntityConsumerEu(int tier) {
         this.tier = tier;
@@ -112,7 +110,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
     @Override
     public double injectEnergy(EnumFacing enumFacing, double amount, double tier) {
         // return the amount of energy we didn't consume
-        return amount - (this.addEnergyToBridge(amount * EU_TO_EC_CONVERSION_FACTOR, false) / EU_TO_EC_CONVERSION_FACTOR);
+        return amount - (this.addEnergyToBridge(amount * Constants.EU_TO_EC_CONVERSION_FACTOR, false) / Constants.EU_TO_EC_CONVERSION_FACTOR);
     }
 
     @Optional.Method(modid = "IC2")

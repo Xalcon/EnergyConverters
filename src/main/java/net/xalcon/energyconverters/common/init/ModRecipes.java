@@ -18,16 +18,19 @@
 package net.xalcon.energyconverters.common.init;
 
 import ic2.api.item.IC2Items;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.xalcon.energyconverters.common.blocks.BlockConverterEuBase.EnumTypeVoltage;
 import net.xalcon.energyconverters.common.blocks.BlockConverterTechRebornBase;
-import net.xalcon.energyconverters.common.blocks.EnumTypeVoltage;
 import techreborn.parts.TechRebornParts;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModRecipes {
     public static void init() {
         initBasic();
@@ -37,57 +40,57 @@ public class ModRecipes {
     }
 
     private static void initTechReborn() {
-        if (Loader.isModLoaded("techreborn")) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerTechReborn, 1, 0),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', new ItemStack(TechRebornParts.cables, 0, 5),
-                    'T', new ItemStack(techreborn.init.ModBlocks.LV_TRANSFORMER, 1),
-                    'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_FRAMES, 1),
-                    'G', "ingotGold",
-                    'c', "circuitBasic"));
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerTechReborn, 1, 1),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', new ItemStack(TechRebornParts.cables, 0, 6),
-                    'T', new ItemStack(techreborn.init.ModBlocks.LV_TRANSFORMER, 1),
-                    'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_FRAMES, 1),
-                    'G', "ingotGold",
-                    'c', "circuitBasic"));
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerTechReborn, 1, 2),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', new ItemStack(TechRebornParts.cables, 0, 7),
-                    'T', new ItemStack(techreborn.init.ModBlocks.MV_TRANSFORMER, 1),
-                    'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1),
-                    'G', "ingotGold",
-                    'c', "circuitBasic"));
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerTechReborn, 1, 3),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', new ItemStack(TechRebornParts.cables, 0, 4),
-                    'T', new ItemStack(techreborn.init.ModBlocks.HV_TRANSFORMER, 1),
-                    'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1),
-                    'G', "ingotGold",
-                    'c', "circuitBasic"));
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerTechReborn, 1, 4),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', new ItemStack(TechRebornParts.cables, 0, 4),
-                    'T', new ItemStack(techreborn.init.ModBlocks.HV_TRANSFORMER, 1),
-                    'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1, 1),
-                    'G', "ingotGold",
-                    'c', "circuitAdvanced"));
+        if (!Loader.isModLoaded("techreborn"))
+            return;
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerTechReborn, 1, 0),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', new ItemStack(TechRebornParts.cables, 0, 5),
+                'T', new ItemStack(techreborn.init.ModBlocks.LV_TRANSFORMER, 1),
+                'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_FRAMES, 1),
+                'G', "ingotGold",
+                'c', "circuitBasic"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerTechReborn, 1, 1),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', new ItemStack(TechRebornParts.cables, 0, 6),
+                'T', new ItemStack(techreborn.init.ModBlocks.LV_TRANSFORMER, 1),
+                'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_FRAMES, 1),
+                'G', "ingotGold",
+                'c', "circuitBasic"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerTechReborn, 1, 2),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', new ItemStack(TechRebornParts.cables, 0, 7),
+                'T', new ItemStack(techreborn.init.ModBlocks.MV_TRANSFORMER, 1),
+                'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1),
+                'G', "ingotGold",
+                'c', "circuitBasic"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerTechReborn, 1, 3),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', new ItemStack(TechRebornParts.cables, 0, 4),
+                'T', new ItemStack(techreborn.init.ModBlocks.HV_TRANSFORMER, 1),
+                'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1),
+                'G', "ingotGold",
+                'c', "circuitBasic"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerTechReborn, 1, 4),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', new ItemStack(TechRebornParts.cables, 0, 4),
+                'T', new ItemStack(techreborn.init.ModBlocks.HV_TRANSFORMER, 1),
+                'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1, 1),
+                'G', "ingotGold",
+                'c', "circuitAdvanced"));
 
-            for (BlockConverterTechRebornBase.PowerTierMap t : BlockConverterTechRebornBase.PowerTierMap.values()) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTechReborn, 1, t.getMeta()), new ItemStack(ModBlocks.ProducerTechReborn, 1, t.getMeta()));
-                GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTechReborn, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerTechReborn, 1, t.getMeta()));
-            }
+        for (BlockConverterTechRebornBase.PowerTierMap t : BlockConverterTechRebornBase.PowerTierMap.values()) {
+            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTechReborn, 1, t.getMeta()), new ItemStack(ModBlocks.ProducerTechReborn, 1, t.getMeta()));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTechReborn, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerTechReborn, 1, t.getMeta()));
         }
     }
 
@@ -138,77 +141,77 @@ public class ModRecipes {
     }
 
     private static void initIC2() {
-        if (Loader.isModLoaded("IC2")) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerEu, 1, 0),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', IC2Items.getItem("cable", "type:tin,insulation:1"),
-                    'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 77),
-                    'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
-                    'G', "ingotGold",
-                    'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
+        if (!Loader.isModLoaded("IC2"))
+            return;
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerEu, 1, 0),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', IC2Items.getItem("cable", "type:tin,insulation:1"),
+                'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 77),
+                'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
+                'G', "ingotGold",
+                'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
 
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerEu, 1, 1),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', IC2Items.getItem("cable", "type:copper,insulation:1"),
-                    'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 78),
-                    'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
-                    'G', "ingotGold",
-                    'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerEu, 1, 1),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', IC2Items.getItem("cable", "type:copper,insulation:1"),
+                'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 78),
+                'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
+                'G', "ingotGold",
+                'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
 
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerEu, 1, 2),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', IC2Items.getItem("cable", "type:gold,insulation:2"),
-                    'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 79),
-                    'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
-                    'G', "ingotGold",
-                    'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerEu, 1, 2),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', IC2Items.getItem("cable", "type:gold,insulation:2"),
+                'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 79),
+                'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
+                'G', "ingotGold",
+                'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
 
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerEu, 1, 3),
-                    "SCS", "TMG", "ScS",
-                    'S', "stone",
-                    'C', IC2Items.getItem("cable", "type:iron,insulation:3"),
-                    'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 80),
-                    'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
-                    'G', "ingotGold",
-                    'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerEu, 1, 3),
+                "SCS", "TMG", "ScS",
+                'S', "stone",
+                'C', IC2Items.getItem("cable", "type:iron,insulation:3"),
+                'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 80),
+                'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
+                'G', "ingotGold",
+                'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
 
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerEu, 1, 4),
-                    "SCS", "TMT", "ScS",
-                    'S', "blockIron",
-                    'C', IC2Items.getItem("cable", "type:glass,insulation:0"),
-                    'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 80),
-                    'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
-                    'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerEu, 1, 4),
+                "SCS", "TMT", "ScS",
+                'S', "blockIron",
+                'C', IC2Items.getItem("cable", "type:glass,insulation:0"),
+                'T', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "te")), 1, 80),
+                'M', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "resource")), 1, 12),
+                'c', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("ic2", "crafting")), 1, 5)));
 
-            for (EnumTypeVoltage t : EnumTypeVoltage.values()) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()));
-                GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()));
-            }
+        for (EnumTypeVoltage t : EnumTypeVoltage.values()) {
+            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()));
         }
     }
 
     private static void initTesla() {
-        if (Loader.isModLoaded("tesla")) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(
-                    new ItemStack(ModBlocks.ProducerTesla),
-                    "SQS", "FBG", "SbS",
-                    'S', "stone",
-                    'Q', "gemQuartz",
-                    'F', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "furnace")),
-                    'B', "blockIron",
-                    'G', "ingotGold",
-                    'b', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars"))));
+        if (!Loader.isModLoaded("tesla"))
+            return;
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ModBlocks.ProducerTesla),
+                "SQS", "FBG", "SbS",
+                'S', "stone",
+                'Q', "gemQuartz",
+                'F', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "furnace")),
+                'B', "blockIron",
+                'G', "ingotGold",
+                'b', Item.REGISTRY.getObject(new ResourceLocation("minecraft", "iron_bars"))));
 
-            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTesla), ModBlocks.ProducerTesla);
-            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTesla), ModBlocks.ConsumerTesla);
-        }
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTesla), ModBlocks.ProducerTesla);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTesla), ModBlocks.ConsumerTesla);
     }
 }

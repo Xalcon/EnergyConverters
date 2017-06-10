@@ -27,8 +27,6 @@ import reborncore.api.power.IEnergyInterfaceTile;
 public class TileEntityTechRebornConsumer extends TileEntityConverterBase implements IEnergyInterfaceTile {
     private EnumPowerTier tier;
 
-    public TileEntityTechRebornConsumer() {}
-
     public TileEntityTechRebornConsumer(EnumPowerTier tier) {
         this.tier = tier;
     }

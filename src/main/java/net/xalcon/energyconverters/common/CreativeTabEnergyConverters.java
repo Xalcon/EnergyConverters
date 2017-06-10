@@ -22,9 +22,9 @@ import net.minecraft.item.Item;
 import net.xalcon.energyconverters.common.init.ModBlocks;
 
 public class CreativeTabEnergyConverters extends CreativeTabs {
-    public final static CreativeTabEnergyConverters Instance = new CreativeTabEnergyConverters();
+    public final static CreativeTabEnergyConverters INSTANCE = new CreativeTabEnergyConverters();
 
-    public CreativeTabEnergyConverters() {
+    private CreativeTabEnergyConverters() {
         super("energy_converters");
     }
 

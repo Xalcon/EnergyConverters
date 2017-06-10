@@ -33,7 +33,7 @@ public class EnergyConvertersMod {
     public static final String VERSION = "@VERSION@";
 
     @SidedProxy(clientSide = "net.xalcon.energyconverters.client.ClientProxy", serverSide = "net.xalcon.energyconverters.server.ServerProxy")
-    public static ModProxy Proxy;
+    public static ModProxy proxy;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

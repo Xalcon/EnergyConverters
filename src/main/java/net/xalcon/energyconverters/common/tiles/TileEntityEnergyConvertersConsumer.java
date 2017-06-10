@@ -20,6 +20,7 @@ package net.xalcon.energyconverters.common.tiles;
 import net.xalcon.energyconverters.common.energy.IEnergyBridgeInputAccessProvider;
 
 public abstract class TileEntityEnergyConvertersConsumer extends TileEntityConverterBase implements IEnergyBridgeInputAccessProvider {
+    @Override
     public double addEnergyToBridge(double amount, boolean simulate) {
         TileEntityEnergyBridge energyBridge = getEnergyBridge();
         if (energyBridge == null)
@@ -27,6 +28,7 @@ public abstract class TileEntityEnergyConvertersConsumer extends TileEntityConve
         return energyBridge.addEnergy(amount, simulate);
     }
 
+    @Override
     public double getBridgeEnergyStored() {
         TileEntityEnergyBridge energyBridge = getEnergyBridge();
         if (energyBridge == null)
@@ -34,6 +36,7 @@ public abstract class TileEntityEnergyConvertersConsumer extends TileEntityConve
         return energyBridge.getStoredEnergy();
     }
 
+    @Override
     public double getBridgeEnergyStoredMax() {
         TileEntityEnergyBridge energyBridge = getEnergyBridge();
         if (energyBridge == null)

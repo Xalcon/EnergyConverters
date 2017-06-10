@@ -48,10 +48,12 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider 
         return BlockRenderLayer.TRANSLUCENT;
     }
 
+    @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }

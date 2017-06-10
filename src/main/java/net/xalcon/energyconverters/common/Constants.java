@@ -17,10 +17,10 @@
  */
 package net.xalcon.energyconverters.common;
 
-import net.minecraft.item.Item;
-
-public abstract class ModProxy {
-    public abstract void registerItemRenderer(Item item, int meta, String id);
-
-    public abstract void registerItemRenderer(Item item, int meta, String id, String variant);
+public class Constants {
+    public final static double EU_TO_EC_CONVERSION_FACTOR = 4;
+    /**
+     * Max energy in an Energy Bridge
+     */
+    public final static double MAX_ENERGY = 1000000;
 }

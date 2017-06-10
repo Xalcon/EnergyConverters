@@ -33,7 +33,6 @@ public class TileEntityTeslaConsumer extends TileEntityEnergyConvertersConsumer 
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing facing) {
         if (capability == TeslaCapabilities.CAPABILITY_CONSUMER)
             return (T) this.teslaConsumer;
-
         return super.getCapability(capability, facing);
     }
 

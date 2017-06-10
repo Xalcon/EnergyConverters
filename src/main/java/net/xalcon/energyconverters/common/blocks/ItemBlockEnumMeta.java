@@ -23,7 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
 public class ItemBlockEnumMeta<T extends Enum<T> & IStringSerializable> extends ItemBlock {
-    private T[] values;
+    private final T[] values;
 
     public ItemBlockEnumMeta(Block block, T[] values) {
         super(block);
@@ -40,5 +40,4 @@ public class ItemBlockEnumMeta<T extends Enum<T> & IStringSerializable> extends 
     public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack) + "." + this.values[stack.getMetadata()].getName();
     }
-
 }

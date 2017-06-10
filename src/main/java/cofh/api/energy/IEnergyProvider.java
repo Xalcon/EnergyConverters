@@ -27,7 +27,6 @@ import net.minecraft.util.EnumFacing;
  * @author King Lemming
  */
 public interface IEnergyProvider extends IEnergyHandler {
-
     /**
      * Remove energy from an IEnergyProvider, internal distribution is left entirely to the IEnergyProvider.
      *
@@ -37,5 +36,4 @@ public interface IEnergyProvider extends IEnergyHandler {
      * @return Amount of energy that was (or would have been, if simulated) extracted.
      */
     int extractEnergy(EnumFacing from, int maxExtract, boolean simulate);
-
 }

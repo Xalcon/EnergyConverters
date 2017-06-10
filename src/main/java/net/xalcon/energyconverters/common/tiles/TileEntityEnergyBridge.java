@@ -19,9 +19,9 @@ package net.xalcon.energyconverters.common.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.xalcon.energyconverters.common.Constants;
 
 public class TileEntityEnergyBridge extends TileEntity {
-    private final static double MAX_ENERGY = 1000000;
     private double energyStored;
 
     @Override
@@ -37,8 +37,8 @@ public class TileEntityEnergyBridge extends TileEntity {
     }
 
     public double addEnergy(double amount, boolean simulate) {
-        if (amount + this.energyStored > MAX_ENERGY)
-            amount = MAX_ENERGY - this.energyStored;
+        if (amount + this.energyStored > Constants.MAX_ENERGY)
+            amount = Constants.MAX_ENERGY - this.energyStored;
         if (!simulate)
             this.energyStored += amount;
         return amount;
@@ -58,6 +58,6 @@ public class TileEntityEnergyBridge extends TileEntity {
     }
 
     public double getStoredEnergyMax() {
-        return MAX_ENERGY;
+        return Constants.MAX_ENERGY;
     }
 }

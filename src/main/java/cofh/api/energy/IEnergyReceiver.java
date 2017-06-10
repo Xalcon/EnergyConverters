@@ -27,7 +27,6 @@ import net.minecraft.util.EnumFacing;
  * @author King Lemming
  */
 public interface IEnergyReceiver extends IEnergyHandler {
-
     /**
      * Add energy to an IEnergyReceiver, internal distribution is left entirely to the IEnergyReceiver.
      *
@@ -37,5 +36,4 @@ public interface IEnergyReceiver extends IEnergyHandler {
      * @return Amount of energy that was (or would have been, if simulated) received.
      */
     int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate);
-
 }

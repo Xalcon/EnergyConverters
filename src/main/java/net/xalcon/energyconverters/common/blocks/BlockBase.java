@@ -23,11 +23,11 @@ import net.minecraft.item.ItemBlock;
 import net.xalcon.energyconverters.EnergyConvertersMod;
 
 public class BlockBase extends Block {
-    protected String internalName;
+    protected final String internalName;
 
-    public BlockBase(Material material, String name) {
+    public BlockBase(Material material, String internalName) {
         super(material);
-        this.internalName = name;
+        this.internalName = internalName;
         setUnlocalizedName(this.internalName);
         setRegistryName(this.internalName);
         this.setHardness(2);
@@ -35,6 +35,6 @@ public class BlockBase extends Block {
     }
 
     public void registerItemModel(ItemBlock itemBlock) {
-        EnergyConvertersMod.Proxy.registerItemRenderer(itemBlock, 0, this.internalName);
+        EnergyConvertersMod.proxy.registerItemRenderer(itemBlock, 0, this.internalName);
     }
 }

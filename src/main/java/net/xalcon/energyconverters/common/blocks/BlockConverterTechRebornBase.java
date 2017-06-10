@@ -19,6 +19,9 @@ package net.xalcon.energyconverters.common.blocks;
 
 import java.util.List;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -36,30 +39,16 @@ import net.xalcon.energyconverters.EnergyConvertersMod;
 import reborncore.api.power.EnumPowerTier;
 
 public abstract class BlockConverterTechRebornBase extends BlockBase {
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public enum PowerTierMap implements IStringSerializable {
         LOW(EnumPowerTier.LOW, "low", 0), MEDIUM(EnumPowerTier.MEDIUM, "medium", 1), HIGH(EnumPowerTier.HIGH, "high", 2), EXTREME(EnumPowerTier.EXTREME, "extreme", 3), INSANE(
                 EnumPowerTier.INSANE, "insane", 4), INFINITE(EnumPowerTier.INFINITE, "infinite", 5);
-        private EnumPowerTier tier;
-        private String name;
-        private int meta;
-
-        PowerTierMap(EnumPowerTier tier, String name, int meta) {
-            this.tier = tier;
-            this.name = name;
-            this.meta = meta;
-        }
-
-        public EnumPowerTier getTier() {
-            return tier;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getMeta() {
-            return meta;
-        }
+        @Getter
+        private final EnumPowerTier tier;
+        @Getter
+        private final String name;
+        @Getter
+        private final int meta;
     }
 
     public static final PropertyEnum<PowerTierMap> TYPE = PropertyEnum.create("tier", PowerTierMap.class);
@@ -77,7 +66,7 @@ public abstract class BlockConverterTechRebornBase extends BlockBase {
     @Override
     public void registerItemModel(ItemBlock itemBlock) {
         for (PowerTierMap t : PowerTierMap.values())
-            EnergyConvertersMod.Proxy.registerItemRenderer(itemBlock, t.ordinal(), this.internalName, "tier=" + t.getName());
+            EnergyConvertersMod.proxy.registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
     }
 
     @Override

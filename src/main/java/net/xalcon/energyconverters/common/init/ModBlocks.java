@@ -17,12 +17,29 @@
  */
 package net.xalcon.energyconverters.common.init;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.xalcon.energyconverters.common.CreativeTabEnergyConverters;
-import net.xalcon.energyconverters.common.blocks.*;
+import net.xalcon.energyconverters.common.blocks.BlockBase;
+import net.xalcon.energyconverters.common.blocks.BlockConsumerEu;
+import net.xalcon.energyconverters.common.blocks.BlockConsumerFe;
+import net.xalcon.energyconverters.common.blocks.BlockConsumerRf;
+import net.xalcon.energyconverters.common.blocks.BlockConsumerTechReborn;
+import net.xalcon.energyconverters.common.blocks.BlockConverterEuBase.EnumTypeVoltage;
+import net.xalcon.energyconverters.common.blocks.BlockConverterTechRebornBase;
+import net.xalcon.energyconverters.common.blocks.BlockEnergyBridge;
+import net.xalcon.energyconverters.common.blocks.BlockProducerEu;
+import net.xalcon.energyconverters.common.blocks.BlockProducerFe;
+import net.xalcon.energyconverters.common.blocks.BlockProducerRf;
+import net.xalcon.energyconverters.common.blocks.BlockProducerTechReborn;
+import net.xalcon.energyconverters.common.blocks.BlockTeslaConsumer;
+import net.xalcon.energyconverters.common.blocks.BlockTeslaProducer;
+import net.xalcon.energyconverters.common.blocks.ItemBlockEnumMeta;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModBlocks {
     public static BlockEnergyBridge EnergyBridge;
     public static BlockProducerEu ProducerEu;
@@ -68,7 +85,7 @@ public class ModBlocks {
         itemBlock.setRegistryName(block.getRegistryName());
         GameRegistry.register(block);
         GameRegistry.register(itemBlock);
-        block.setCreativeTab(CreativeTabEnergyConverters.Instance);
+        block.setCreativeTab(CreativeTabEnergyConverters.INSTANCE);
         block.registerItemModel(itemBlock);
         return block;
     }

@@ -26,7 +26,6 @@ package cofh.api.energy;
  * @author King Lemming
  */
 public interface IEnergyStorage {
-
     /**
      * Adds energy to the storage. Returns quantity of energy that was accepted.
      *
@@ -54,5 +53,4 @@ public interface IEnergyStorage {
      * Returns the maximum amount of energy that can be stored.
      */
     int getMaxEnergyStored();
-
 }

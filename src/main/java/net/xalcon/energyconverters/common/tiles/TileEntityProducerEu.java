@@ -29,20 +29,15 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.common.Constants;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySource", modid = "IC2", striprefs = true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource {
-    private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
     private double maxEnergyUnits;
     private boolean addedToNet;
     private int tier;
 
-    public TileEntityProducerEu() {
-        this.addedToNet = false;
-    }
-
     public TileEntityProducerEu(int tier) {
-        super();
         this.tier = tier;
     }
 
@@ -96,13 +91,13 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
     @Optional.Method(modid = "IC2")
     @Override
     public double getOfferedEnergy() {
-        return Math.min(getBridgeEnergyStored() / EU_TO_EC_CONVERSION_FACTOR, this.maxEnergyUnits);
+        return Math.min(getBridgeEnergyStored() / Constants.EU_TO_EC_CONVERSION_FACTOR, this.maxEnergyUnits);
     }
 
     @Optional.Method(modid = "IC2")
     @Override
     public void drawEnergy(double v) {
-        this.retrieveEnergyFromBridge(v * EU_TO_EC_CONVERSION_FACTOR, false);
+        this.retrieveEnergyFromBridge(v * Constants.EU_TO_EC_CONVERSION_FACTOR, false);
     }
 
     @Optional.Method(modid = "IC2")

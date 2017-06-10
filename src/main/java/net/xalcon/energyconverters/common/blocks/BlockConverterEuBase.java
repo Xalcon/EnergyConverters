@@ -19,6 +19,9 @@ package net.xalcon.energyconverters.common.blocks;
 
 import java.util.List;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -28,13 +31,28 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.xalcon.energyconverters.EnergyConvertersMod;
 
 public abstract class BlockConverterEuBase extends BlockBase {
-    public static final PropertyEnum TYPE = PropertyEnum.create("tier", EnumTypeVoltage.class);
+
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public enum EnumTypeVoltage implements IStringSerializable {
+        LowVoltage(0, 1, "lv"), MediumVoltage(1, 2, "mv"), HighVoltage(2, 3, "hv"), ExtremeVoltage(3, 4, "ev"),
+        // or is it infinite voltage? No idea D: its just IV in the wiki
+        IndustrialVoltage(4, 5, "iv");
+        @Getter
+        private final int meta;
+        @Getter
+        private final int tier;
+        @Getter
+        private final String name;
+    }
+
+    public static final PropertyEnum<EnumTypeVoltage> TYPE = PropertyEnum.create("tier", EnumTypeVoltage.class);
 
     public BlockConverterEuBase(Material material, String name) {
         super(material, name);
@@ -49,7 +67,7 @@ public abstract class BlockConverterEuBase extends BlockBase {
     @Override
     public void registerItemModel(ItemBlock itemBlock) {
         for (EnumTypeVoltage t : EnumTypeVoltage.values())
-            EnergyConvertersMod.Proxy.registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
+            EnergyConvertersMod.proxy.registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
     }
 
     @Override
@@ -69,7 +87,7 @@ public abstract class BlockConverterEuBase extends BlockBase {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return ((EnumTypeVoltage) state.getValue(TYPE)).getMeta();
+        return state.getValue(TYPE).getMeta();
     }
 
     @Override

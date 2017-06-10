@@ -58,6 +58,8 @@ dependencies {
     deobfProvided("TechReborn:TechReborn-${mcversion}:${techreborn_version}:universal") {
         transitive = false
     }
+
+    compileOnly "org.projectlombok:lombok:1.16.+"
 }
 
 spotless {

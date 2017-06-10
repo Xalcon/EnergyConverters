@@ -33,10 +33,7 @@ import reborncore.api.power.IEnergyInterfaceTile;
 public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProducer implements ITickable, IEnergyInterfaceTile, IListInfoProvider {
     private EnumPowerTier tier;
 
-    public TileEntityTechRebornProducer() {}
-
     public TileEntityTechRebornProducer(EnumPowerTier tier) {
-        super();
         this.tier = tier;
     }
 
@@ -65,9 +62,9 @@ public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProd
                         IEnergyInterfaceTile eFace = (IEnergyInterfaceTile) tile;
                         if (eFace.getTier().ordinal() < getTier().ordinal()) {
                             for (int j = 0; j < 2; ++j) {
-                                double d3 = (double) pos.getX() + this.getWorld().rand.nextDouble() + (side.getFrontOffsetX() / 2);
-                                double d8 = (double) pos.getY() + this.getWorld().rand.nextDouble() + 1;
-                                double d13 = (double) pos.getZ() + this.getWorld().rand.nextDouble() + (side.getFrontOffsetZ() / 2);
+                                double d3 = pos.getX() + this.getWorld().rand.nextDouble() + (side.getFrontOffsetX() / 2);
+                                double d8 = pos.getY() + this.getWorld().rand.nextDouble() + 1;
+                                double d13 = pos.getZ() + this.getWorld().rand.nextDouble() + (side.getFrontOffsetZ() / 2);
                                 this.getWorld().spawnParticle(EnumParticleTypes.SMOKE_LARGE, d3, d8, d13, 0.0D, 0.0D, 0.0D);
                             }
                         } else {

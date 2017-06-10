@@ -17,10 +17,23 @@
  */
 package net.xalcon.energyconverters.common.init;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.xalcon.energyconverters.common.tiles.*;
+import net.xalcon.energyconverters.common.tiles.TileEntityConsumerEu;
+import net.xalcon.energyconverters.common.tiles.TileEntityConsumerFe;
+import net.xalcon.energyconverters.common.tiles.TileEntityConsumerRf;
+import net.xalcon.energyconverters.common.tiles.TileEntityEnergyBridge;
+import net.xalcon.energyconverters.common.tiles.TileEntityProducerEu;
+import net.xalcon.energyconverters.common.tiles.TileEntityProducerFe;
+import net.xalcon.energyconverters.common.tiles.TileEntityProducerRf;
+import net.xalcon.energyconverters.common.tiles.TileEntityTechRebornConsumer;
+import net.xalcon.energyconverters.common.tiles.TileEntityTechRebornProducer;
+import net.xalcon.energyconverters.common.tiles.TileEntityTeslaConsumer;
+import net.xalcon.energyconverters.common.tiles.TileEntityTeslaProducer;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModTileEntities {
     public static void init() {
         GameRegistry.registerTileEntity(TileEntityEnergyBridge.class, "tileentity_energy_bridge");

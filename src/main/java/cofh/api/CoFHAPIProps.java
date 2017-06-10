@@ -17,12 +17,10 @@
  */
 package cofh.api;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CoFHAPIProps {
-
-    private CoFHAPIProps() {
-
-    }
-
     public static final String VERSION = "1.8.9R1.2.0B1";
-
 }
