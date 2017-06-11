@@ -22,6 +22,7 @@ import javax.annotation.Nullable;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -31,6 +32,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.client.ClientProxy;
 import net.xalcon.energyconverters.common.tiles.TileEntityEnergyBridge;
 
 public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider {
@@ -62,10 +65,12 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider 
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX,
             float hitY, float hitZ) {
         if (!worldIn.isRemote) {
-            double amount = ((TileEntityEnergyBridge) worldIn.getTileEntity(pos)).getStoredEnergy();
-            playerIn.addChatComponentMessage(new TextComponentString("StoredAmount: " + amount));
+            playerIn.addChatComponentMessage(new TextComponentString(I18n.format("tile.energy_bridge.energy_message",
+                    ((ClientProxy) EnergyConvertersMod.getProxy()).getFormatter().format(Math.round(
+                            ((TileEntityEnergyBridge) worldIn.getTileEntity(pos)).getStoredEnergy() * 100)
+                            / 100.0))));
         }
-        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+        return true;
     }
 
     @Override

@@ -29,13 +29,21 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
-import net.xalcon.energyconverters.common.Constants;
+import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySource", modid = "IC2", striprefs = true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource {
+    private static final EnergyConvertersConfig config = EnergyConvertersMod.getConfig();
+
     private double maxEnergyUnits;
     private boolean addedToNet;
     private int tier;
+
+    // Required to be able to restore tile entity state.
+    public TileEntityProducerEu() {
+        addedToNet = false;
+    }
 
     public TileEntityProducerEu(int tier) {
         this.tier = tier;
@@ -54,7 +62,6 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
     }
 
     private void onLoaded() {
-        System.out.println("onLoad (isRemote: " + this.worldObj.isRemote + ")");
         super.onLoad();
         if (this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available())
             return;
@@ -65,14 +72,12 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 
     @Override
     public void invalidate() {
-        System.out.println("invalidate (isRemote: " + this.worldObj.isRemote + ")");
         super.invalidate();
         onChunkUnload();
     }
 
     @Override
     public void onChunkUnload() {
-        System.out.println("OnChunkUnload (isRemote: " + this.worldObj.isRemote + ")");
         super.onChunkUnload();
         if (this.addedToNet && Info.isIc2Available()) {
             MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
@@ -91,13 +96,13 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
     @Optional.Method(modid = "IC2")
     @Override
     public double getOfferedEnergy() {
-        return Math.min(getBridgeEnergyStored() / Constants.EU_TO_EC_CONVERSION_FACTOR, this.maxEnergyUnits);
+        return Math.min(getBridgeEnergyStored() / config.getEuConversion(), this.maxEnergyUnits);
     }
 
     @Optional.Method(modid = "IC2")
     @Override
     public void drawEnergy(double v) {
-        this.retrieveEnergyFromBridge(v * Constants.EU_TO_EC_CONVERSION_FACTOR, false);
+        this.retrieveEnergyFromBridge(v * config.getEuConversion(), false);
     }
 
     @Optional.Method(modid = "IC2")

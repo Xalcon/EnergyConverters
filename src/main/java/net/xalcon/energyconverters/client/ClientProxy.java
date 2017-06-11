@@ -17,6 +17,11 @@
  */
 package net.xalcon.energyconverters.client;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
+import lombok.Getter;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -32,5 +37,14 @@ public class ClientProxy extends ModProxy {
     @Override
     public void registerItemRenderer(Item item, int meta, String id, String variant) {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(EnergyConvertersMod.MOD_ID + ":" + id, variant));
+    }
+
+    @Getter
+    private NumberFormat formatter;
+
+    @Override
+    public void init() {
+        formatter = NumberFormat.getInstance(Locale.forLanguageTag(Minecraft.getMinecraft()
+                .getLanguageManager().getCurrentLanguage().getLanguageCode()));
     }
 }

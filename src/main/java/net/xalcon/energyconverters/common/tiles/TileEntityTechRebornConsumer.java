@@ -17,12 +17,14 @@
  */
 package net.xalcon.energyconverters.common.tiles;
 
+import lombok.NoArgsConstructor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
 import reborncore.api.power.EnumPowerTier;
 import reborncore.api.power.IEnergyInterfaceTile;
 
+@NoArgsConstructor // Required to be able to restore tile entity state.
 @Optional.Interface(iface = "reborncore.api.power.IEnergyInterfaceTile", modid = "reborncore", striprefs = true)
 public class TileEntityTechRebornConsumer extends TileEntityConverterBase implements IEnergyInterfaceTile {
     private EnumPowerTier tier;

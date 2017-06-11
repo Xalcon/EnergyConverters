@@ -23,4 +23,6 @@ public abstract class ModProxy {
     public abstract void registerItemRenderer(Item item, int meta, String id);
 
     public abstract void registerItemRenderer(Item item, int meta, String id, String variant);
+
+    public void init() {};
 }

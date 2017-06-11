@@ -23,16 +23,21 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.info.Info;
+import lombok.NoArgsConstructor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
-import net.xalcon.energyconverters.common.Constants;
+import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 
+@NoArgsConstructor // Required to be able to restore tile entity state.
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2", striprefs = true)
 public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer implements ITickable, IEnergySink {
+    private static final EnergyConvertersConfig config = EnergyConvertersMod.getConfig();
+
     private boolean addedToNet;
     private int tier;
     private double tierEnergyMax;
@@ -56,7 +61,6 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
     }
 
     private void onLoaded() {
-        System.out.println("onLoad (isRemote: " + this.worldObj.isRemote + ")");
         super.onLoad();
         if (this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available())
             return;
@@ -66,14 +70,12 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 
     @Override
     public void invalidate() {
-        System.out.println("invalidate (isRemote: " + this.worldObj.isRemote + ")");
         super.invalidate();
         onChunkUnload();
     }
 
     @Override
     public void onChunkUnload() {
-        System.out.println("OnChunkUnload (isRemote: " + this.worldObj.isRemote + ")");
         super.onChunkUnload();
         if (this.addedToNet && Info.isIc2Available()) {
             MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
@@ -95,8 +97,9 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
     @Optional.Method(modid = "IC2")
     @Override
     public double getDemandedEnergy() {
-        double demand = this.getBridgeEnergyStoredMax() - this.getBridgeEnergyStored();
-        if (demand > 0) { return Math.min(demand, this.tierEnergyMax); }
+        double demand = (this.getBridgeEnergyStoredMax() - this.getBridgeEnergyStored()) / config.getEuConversion();
+        if (demand > 0)
+            return Math.min(demand, this.tierEnergyMax);
         return 0;
     }
 
@@ -110,7 +113,8 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
     @Override
     public double injectEnergy(EnumFacing enumFacing, double amount, double tier) {
         // return the amount of energy we didn't consume
-        return amount - (this.addEnergyToBridge(amount * Constants.EU_TO_EC_CONVERSION_FACTOR, false) / Constants.EU_TO_EC_CONVERSION_FACTOR);
+        double conversion = config.getEuConversion();
+        return amount - (this.addEnergyToBridge(amount * conversion, false) / conversion);
     }
 
     @Optional.Method(modid = "IC2")

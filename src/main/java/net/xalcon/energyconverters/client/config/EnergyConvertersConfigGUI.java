@@ -15,26 +15,24 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see LICENSE.md at the root of the project.
  */
-package net.xalcon.energyconverters.common.blocks;
+package net.xalcon.energyconverters.client.config;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemBlock;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.IConfigElement;
 import net.xalcon.energyconverters.EnergyConvertersMod;
 
-public class BlockBase extends Block {
-    protected final String internalName;
-
-    public BlockBase(Material material, String internalName) {
-        super(material);
-        this.internalName = internalName;
-        setUnlocalizedName(this.internalName);
-        setRegistryName(this.internalName);
-        this.setHardness(2);
-        this.setResistance(5);
+public class EnergyConvertersConfigGUI extends GuiConfig {
+    public EnergyConvertersConfigGUI(GuiScreen parent) {
+        super(parent, getConfigElements(), EnergyConvertersMod.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(EnergyConvertersMod.getConfig().getString()));
     }
 
-    public void registerItemModel(ItemBlock itemBlock) {
-        EnergyConvertersMod.getProxy().registerItemRenderer(itemBlock, 0, this.internalName);
+    private static List<IConfigElement> getConfigElements() {
+        List<IConfigElement> list = new ArrayList<IConfigElement>();
+        list.addAll(EnergyConvertersMod.getConfig().getConfigElements());
+        return list;
     }
 }

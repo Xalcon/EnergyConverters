@@ -67,7 +67,7 @@ public abstract class BlockConverterEuBase extends BlockBase {
     @Override
     public void registerItemModel(ItemBlock itemBlock) {
         for (EnumTypeVoltage t : EnumTypeVoltage.values())
-            EnergyConvertersMod.proxy.registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
+            EnergyConvertersMod.getProxy().registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
     }
 
     @Override

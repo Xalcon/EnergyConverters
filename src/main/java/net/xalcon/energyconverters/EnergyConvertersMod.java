@@ -17,32 +17,60 @@
  */
 package net.xalcon.energyconverters;
 
+import org.apache.logging.log4j.Logger;
+
+import lombok.Getter;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.xalcon.energyconverters.common.ModProxy;
+import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 import net.xalcon.energyconverters.common.init.ModBlocks;
 import net.xalcon.energyconverters.common.init.ModRecipes;
 import net.xalcon.energyconverters.common.init.ModTileEntities;
 
-@Mod(modid = EnergyConvertersMod.MOD_ID, version = EnergyConvertersMod.VERSION)
+@Mod(modid = EnergyConvertersMod.MOD_ID, name = EnergyConvertersMod.MOD_NAME, version = EnergyConvertersMod.VERSION, guiFactory = "net.xalcon.energyconverters.client.config.EnergyConvertersGUIFactory")
 public class EnergyConvertersMod {
     public static final String MOD_ID = "energyconverters";
+    public static final String MOD_NAME = "Energy Converters";
     public static final String VERSION = "@VERSION@";
 
+    @Getter
+    private static Logger logger;
+
     @SidedProxy(clientSide = "net.xalcon.energyconverters.client.ClientProxy", serverSide = "net.xalcon.energyconverters.server.ServerProxy")
-    public static ModProxy proxy;
+    @Getter
+    private static ModProxy proxy;
+
+    @Getter
+    private static EnergyConvertersConfig config;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        logger = event.getModLog();
+        config = new EnergyConvertersConfig(event.getSuggestedConfigurationFile());
+
         ModBlocks.init();
         ModTileEntities.init();
+
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         ModRecipes.init();
+        proxy.init();
+    }
+
+    @SubscribeEvent
+    public void onConfigChanged(OnConfigChangedEvent event) {
+        if (event.getModID().equals(MOD_ID)) {
+            config.syncConfig();
+        }
     }
 }

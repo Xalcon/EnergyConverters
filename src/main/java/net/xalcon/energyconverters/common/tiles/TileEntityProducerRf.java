@@ -23,8 +23,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 
 public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer implements IEnergyProvider, ITickable {
+    private static final EnergyConvertersConfig config = EnergyConvertersMod.getConfig();
+
     @Override
     public boolean canConnectEnergy(EnumFacing from) {
         return true;
@@ -32,17 +36,17 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 
     @Override
     public int getEnergyStored(EnumFacing from) {
-        return (int) this.getBridgeEnergyStored();
+        return (int) (this.getBridgeEnergyStored() / config.getRfConversion());
     }
 
     @Override
     public int getMaxEnergyStored(EnumFacing from) {
-        return (int) this.getBridgeEnergyStoredMax();
+        return (int) (this.getBridgeEnergyStoredMax() / config.getRfConversion());
     }
 
     @Override
     public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
-        return (int) this.retrieveEnergyFromBridge(maxExtract, simulate);
+        return (int) (this.retrieveEnergyFromBridge(maxExtract * config.getRfConversion(), simulate) / config.getRfConversion());
     }
 
     @Override
@@ -50,14 +54,12 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
         for (EnumFacing facing : EnumFacing.VALUES) {
             BlockPos pos = this.pos.offset(facing);
             TileEntity te = this.worldObj.getTileEntity(pos);
-            if (te == null)
-                continue;
-            if (te instanceof IEnergyReceiver) {
+            if (te != null && !te.isInvalid() && te instanceof IEnergyReceiver) {
                 IEnergyReceiver rcv = (IEnergyReceiver) te;
                 if (rcv.canConnectEnergy(facing.getOpposite())) {
-                    int o = (int) this.getBridgeEnergyStored();
+                    int o = (int) (this.getBridgeEnergyStored() / config.getRfConversion());
                     int v = rcv.receiveEnergy(facing.getOpposite(), o, false);
-                    this.retrieveEnergyFromBridge(v, false);
+                    this.retrieveEnergyFromBridge(v * config.getRfConversion(), false);
                 }
             }
         }

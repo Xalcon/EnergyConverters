@@ -42,11 +42,7 @@ public abstract class TileEntityConverterBase extends TileEntity {
                 if (blockState.getBlock() != ModBlocks.EnergyBridge)
                     continue;
                 TileEntity te = this.worldObj.getTileEntity(pos);
-                if (te == null || !(te instanceof TileEntityEnergyBridge)) {
-                    System.out.println("Expected TileEntityEnergyBridge @ " + pos + " but found " + te + ". Try replacing the affected block");
-                    continue;
-                }
-                if (te.isInvalid())
+                if (te == null || !(te instanceof TileEntityEnergyBridge) || te.isInvalid())
                     continue;
                 energyBridge = (TileEntityEnergyBridge) te;
                 this.cachedEnergyBridge = new WeakReference<>(energyBridge);
