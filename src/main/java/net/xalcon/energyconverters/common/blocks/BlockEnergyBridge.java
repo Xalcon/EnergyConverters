@@ -53,7 +53,7 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
             if(te instanceof TileEntityEnergyBridge)
             {
                 double amount = ((TileEntityEnergyBridge)te).getStoredEnergy();
-                playerIn.sendStatusMessage(new TextComponentTranslation(EnergyConverters.MOD_ID + ".energybridge.stored", amount));
+                playerIn.sendStatusMessage(new TextComponentTranslation(EnergyConverters.MOD_ID + ".energybridge.stored", Math.round(amount)));
             }
         }
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
