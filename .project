@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>EnergyConverters</name>
-	<comment>Project EnergyConverters created by Buildship.</comment>
+	<comment>Simple mod that provides a few blocks to convert energy between EU, RF, Forge Energy, and Tesla.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
