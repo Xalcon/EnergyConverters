@@ -6,6 +6,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.EnergyConverters;
 import reborncore.api.IListInfoProvider;
 import reborncore.api.power.EnumPowerTier;
 import reborncore.api.power.IEnergyInterfaceTile;
@@ -133,8 +134,9 @@ public class TileEntityTechRebornProducer extends TileEntityEnergyConvertersProd
 	@Override
 	public double useEnergy(double v, boolean b)
 	{
+        double ratio = EnergyConverters.getConfig().getRfConversion();
 		TileEntityEnergyBridge bridge = this.getEnergyBridge();
-		return bridge == null ? 0 : bridge.getEnergy(v, b);
+		return bridge == null ? 0 : bridge.getEnergy(v * ratio, b) / ratio;
 	}
 
 	@Override

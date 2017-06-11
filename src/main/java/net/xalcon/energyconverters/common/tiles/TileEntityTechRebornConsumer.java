@@ -3,6 +3,7 @@ package net.xalcon.energyconverters.common.tiles;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.EnergyConverters;
 import reborncore.api.power.EnumPowerTier;
 import reborncore.api.power.IEnergyInterfaceTile;
 
@@ -10,10 +11,6 @@ import reborncore.api.power.IEnergyInterfaceTile;
 public class TileEntityTechRebornConsumer extends TileEntityConverterBase implements IEnergyInterfaceTile
 {
 	private EnumPowerTier tier;
-
-	public TileEntityTechRebornConsumer()
-	{
-	}
 
 	public TileEntityTechRebornConsumer(EnumPowerTier tier)
 	{
@@ -38,7 +35,7 @@ public class TileEntityTechRebornConsumer extends TileEntityConverterBase implem
 	public double getEnergy()
 	{
 		TileEntityEnergyBridge bridge = this.getEnergyBridge();
-		return bridge == null ? 0 : bridge.getStoredEnergy();
+		return bridge == null ? 0 : bridge.getStoredEnergy() / EnergyConverters.getConfig().getRfConversion();
 	}
 
 	@Override
@@ -48,7 +45,7 @@ public class TileEntityTechRebornConsumer extends TileEntityConverterBase implem
 	public double getMaxPower()
 	{
 		TileEntityEnergyBridge bridge = this.getEnergyBridge();
-		return bridge == null ? 0 : bridge.getStoredEnergyMax();
+		return bridge == null ? 0 : bridge.getStoredEnergyMax() / EnergyConverters.getConfig().getRfConversion();
 	}
 
 	@Override
@@ -66,8 +63,9 @@ public class TileEntityTechRebornConsumer extends TileEntityConverterBase implem
 	@Override
 	public double addEnergy(double v, boolean simulate)
 	{
+	    double ratio = EnergyConverters.getConfig().getRfConversion();
 		TileEntityEnergyBridge bridge = this.getEnergyBridge();
-		return bridge == null ? 0 : bridge.addEnergy(v, simulate);
+		return bridge == null ? 0 : bridge.addEnergy(v * ratio, simulate) / ratio;
 	}
 
 	@Override
