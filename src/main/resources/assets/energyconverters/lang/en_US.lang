@@ -1,4 +1,5 @@
 tile.energy_bridge.name=Energy Bridge
+tile.energy_bridge.energy_message=Stored Energy: %s
 tile.energy_producer_eu.lv.name=LV Energy Producer (IC2)
 tile.energy_producer_eu.mv.name=MV Energy Producer (IC2)
 tile.energy_producer_eu.hv.name=HV Energy Producer (IC2)

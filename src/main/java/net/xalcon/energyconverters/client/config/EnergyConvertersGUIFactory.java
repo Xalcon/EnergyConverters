@@ -15,12 +15,31 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see LICENSE.md at the root of the project.
  */
-package net.xalcon.energyconverters.common.blocks;
+package net.xalcon.energyconverters.client.config;
 
-import net.minecraft.block.material.Material;
+import java.util.Set;
 
-public class BlockRfConsumer extends BlockBase {
-    public BlockRfConsumer() {
-        super(Material.IRON, "energy_consumer_rf");
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.client.IModGuiFactory;
+
+public class EnergyConvertersGUIFactory implements IModGuiFactory {
+    @Override
+    public void initialize(Minecraft minecraftInstance) {}
+
+    @Override
+    public Class<? extends GuiScreen> mainConfigGuiClass() {
+        return EnergyConvertersConfigGUI.class;
+    }
+
+    @Override
+    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+        return null;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
+        return null;
     }
 }
