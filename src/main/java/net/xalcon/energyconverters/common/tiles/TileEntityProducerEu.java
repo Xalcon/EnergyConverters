@@ -29,12 +29,12 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySource", modid = "IC2", striprefs = true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource {
-    private static final EnergyConvertersConfig config = EnergyConvertersMod.getConfig();
+    private static final EnergyConvertersConfig config = EnergyConverters.getConfig();
 
     private double maxEnergyUnits;
     private boolean addedToNet;

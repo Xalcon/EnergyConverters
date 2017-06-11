@@ -35,7 +35,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 
 public abstract class BlockConverterEuBase extends BlockBase {
 
@@ -67,7 +67,7 @@ public abstract class BlockConverterEuBase extends BlockBase {
     @Override
     public void registerItemModel(ItemBlock itemBlock) {
         for (EnumTypeVoltage t : EnumTypeVoltage.values())
-            EnergyConvertersMod.getProxy().registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
+            EnergyConverters.getProxy().registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
     }
 
     @Override

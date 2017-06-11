@@ -23,11 +23,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 
 public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer implements IEnergyProvider, ITickable {
-    private static final EnergyConvertersConfig config = EnergyConvertersMod.getConfig();
+    private static final EnergyConvertersConfig config = EnergyConverters.getConfig();
 
     @Override
     public boolean canConnectEnergy(EnumFacing from) {

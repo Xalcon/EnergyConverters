@@ -19,11 +19,11 @@ package net.xalcon.energyconverters.common.tiles;
 
 import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.util.EnumFacing;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 
 public class TileEntityConsumerRf extends TileEntityEnergyConvertersConsumer implements IEnergyReceiver {
-    private static final EnergyConvertersConfig config = EnergyConvertersMod.getConfig();
+    private static final EnergyConvertersConfig config = EnergyConverters.getConfig();
 
     @Override
     public boolean canConnectEnergy(EnumFacing from) {

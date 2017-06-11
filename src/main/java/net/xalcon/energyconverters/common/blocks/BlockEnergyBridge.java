@@ -32,7 +32,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.client.ClientProxy;
 import net.xalcon.energyconverters.common.tiles.TileEntityEnergyBridge;
 
@@ -66,7 +66,7 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider 
             float hitY, float hitZ) {
         if (!worldIn.isRemote) {
             playerIn.addChatComponentMessage(new TextComponentString(I18n.format("tile.energy_bridge.energy_message",
-                    ((ClientProxy) EnergyConvertersMod.getProxy()).getFormatter().format(Math.round(
+                    ((ClientProxy) EnergyConverters.getProxy()).getFormatter().format(Math.round(
                             ((TileEntityEnergyBridge) worldIn.getTileEntity(pos)).getStoredEnergy() * 100)
                             / 100.0))));
         }

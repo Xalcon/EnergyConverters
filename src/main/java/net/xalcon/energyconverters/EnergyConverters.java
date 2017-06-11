@@ -34,8 +34,8 @@ import net.xalcon.energyconverters.common.init.ModBlocks;
 import net.xalcon.energyconverters.common.init.ModRecipes;
 import net.xalcon.energyconverters.common.init.ModTileEntities;
 
-@Mod(modid = EnergyConvertersMod.MOD_ID, name = EnergyConvertersMod.MOD_NAME, version = EnergyConvertersMod.VERSION, guiFactory = "net.xalcon.energyconverters.client.config.EnergyConvertersGUIFactory")
-public class EnergyConvertersMod {
+@Mod(modid = EnergyConverters.MOD_ID, name = EnergyConverters.MOD_NAME, version = EnergyConverters.VERSION, guiFactory = "net.xalcon.energyconverters.client.config.EnergyConvertersGUIFactory")
+public class EnergyConverters {
     public static final String MOD_ID = "energyconverters";
     public static final String MOD_NAME = "Energy Converters";
     public static final String VERSION = "@VERSION@";

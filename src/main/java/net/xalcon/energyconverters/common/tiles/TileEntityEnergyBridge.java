@@ -19,11 +19,11 @@ package net.xalcon.energyconverters.common.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.config.EnergyConvertersConfig;
 
 public class TileEntityEnergyBridge extends TileEntity {
-    private static final EnergyConvertersConfig config = EnergyConvertersMod.getConfig();
+    private static final EnergyConvertersConfig config = EnergyConverters.getConfig();
     private double energyStored;
 
     @Override

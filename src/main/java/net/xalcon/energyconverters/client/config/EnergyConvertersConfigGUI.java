@@ -23,16 +23,16 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 
 public class EnergyConvertersConfigGUI extends GuiConfig {
     public EnergyConvertersConfigGUI(GuiScreen parent) {
-        super(parent, getConfigElements(), EnergyConvertersMod.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(EnergyConvertersMod.getConfig().getString()));
+        super(parent, getConfigElements(), EnergyConverters.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(EnergyConverters.getConfig().getString()));
     }
 
     private static List<IConfigElement> getConfigElements() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
-        list.addAll(EnergyConvertersMod.getConfig().getConfigElements());
+        list.addAll(EnergyConverters.getConfig().getConfigElements());
         return list;
     }
 }

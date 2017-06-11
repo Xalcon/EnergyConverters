@@ -20,7 +20,7 @@ package net.xalcon.energyconverters.common.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 
 public class BlockBase extends Block {
     protected final String internalName;
@@ -35,6 +35,6 @@ public class BlockBase extends Block {
     }
 
     public void registerItemModel(ItemBlock itemBlock) {
-        EnergyConvertersMod.getProxy().registerItemRenderer(itemBlock, 0, this.internalName);
+        EnergyConverters.getProxy().registerItemRenderer(itemBlock, 0, this.internalName);
     }
 }

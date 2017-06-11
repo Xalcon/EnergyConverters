@@ -35,7 +35,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.xalcon.energyconverters.EnergyConvertersMod;
+import net.xalcon.energyconverters.EnergyConverters;
 import reborncore.api.power.EnumPowerTier;
 
 public abstract class BlockConverterTechRebornBase extends BlockBase {
@@ -66,7 +66,7 @@ public abstract class BlockConverterTechRebornBase extends BlockBase {
     @Override
     public void registerItemModel(ItemBlock itemBlock) {
         for (PowerTierMap t : PowerTierMap.values())
-            EnergyConvertersMod.getProxy().registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
+            EnergyConverters.getProxy().registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
     }
 
     @Override
