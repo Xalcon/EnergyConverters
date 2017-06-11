@@ -5,7 +5,6 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.xalcon.energyconverters.common.CreativeTabEnergyConverters;
 import net.xalcon.energyconverters.common.blocks.*;
-import reborncore.api.power.EnumPowerTier;
 
 public class ModBlocks
 {

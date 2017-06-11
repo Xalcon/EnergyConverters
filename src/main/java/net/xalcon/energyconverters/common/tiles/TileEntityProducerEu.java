@@ -44,7 +44,6 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 
 	private void onLoaded()
 	{
-		System.out.println("onLoad (isRemote: "+this.worldObj.isRemote+")");
 		super.onLoad();
 		if(this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -55,7 +54,6 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void invalidate()
 	{
-		System.out.println("invalidate (isRemote: "+this.worldObj.isRemote+")");
 		super.invalidate();
 		onChunkUnload();
 	}
@@ -63,7 +61,6 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void onChunkUnload()
 	{
-		System.out.println("OnChunkUnload (isRemote: "+this.worldObj.isRemote+")");
 		super.onChunkUnload();
 		if (this.addedToNet && Info.isIc2Available())
 		{
@@ -75,7 +72,7 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void update()
 	{
-		if(this.worldObj.isRemote) return;
+		if(this.getWorld().isRemote) return;
 		if(!addedToNet) onLoaded();
 	}
 

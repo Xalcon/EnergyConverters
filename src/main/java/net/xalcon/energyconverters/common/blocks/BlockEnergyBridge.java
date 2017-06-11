@@ -24,21 +24,19 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
     }
 
     @Override
-    public boolean isVisuallyOpaque()
-    {
-        return false;
-    }
-
-    @Override
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
     public boolean isFullCube(IBlockState state)
     {
         return false;
@@ -49,8 +47,12 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
     {
         if(!worldIn.isRemote)
         {
-            double amount = ((TileEntityEnergyBridge)worldIn.getTileEntity(pos)).getStoredEnergy();
-            playerIn.addChatComponentMessage(new TextComponentString("StoredAmount: " + amount));
+            TileEntity te = worldIn.getTileEntity(pos);
+            if(te instanceof TileEntityEnergyBridge)
+            {
+                double amount = ((TileEntityEnergyBridge)te).getStoredEnergy();
+                playerIn.sendStatusMessage(new TextComponentString("StoredAmount: " + amount));
+            }
         }
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
     }

@@ -3,8 +3,6 @@ package net.xalcon.energyconverters.common.energy;
 import net.darkhax.tesla.api.ITeslaProducer;
 import net.minecraftforge.fml.common.Optional;
 
-import java.lang.ref.WeakReference;
-
 @Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaProducer", modid = "tesla")
 public class TeslaEnergyProductionHandler implements ITeslaProducer
 {

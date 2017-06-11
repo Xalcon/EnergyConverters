@@ -3,7 +3,6 @@ package net.xalcon.energyconverters.common.tiles;
 import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.common.energy.TeslaEnergyConsumptionHandler;
 
 import javax.annotation.Nonnull;

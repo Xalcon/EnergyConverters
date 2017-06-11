@@ -5,13 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.xalcon.energyconverters.common.blocks.BlockConverterTechRebornBase;
 import net.xalcon.energyconverters.common.blocks.EnumTypeVoltage;
-import reborncore.RebornCore;
-import techreborn.init.ModItems;
 import techreborn.parts.TechRebornParts;
 
 public class ModRecipes

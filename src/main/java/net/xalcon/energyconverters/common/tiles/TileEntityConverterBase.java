@@ -4,6 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.init.ModBlocks;
 
 import java.lang.ref.WeakReference;
@@ -26,12 +27,12 @@ public abstract class TileEntityConverterBase extends TileEntity
 			for(EnumFacing direction : EnumFacing.VALUES)
 			{
 				BlockPos pos = this.pos.offset(direction);
-				IBlockState blockState = this.worldObj.getBlockState(pos);
+				IBlockState blockState = this.getWorld().getBlockState(pos);
 				if(blockState.getBlock() != ModBlocks.EnergyBridge) continue;
-				TileEntity te = this.worldObj.getTileEntity(pos);
+				TileEntity te = this.getWorld().getTileEntity(pos);
 				if(te == null || !(te instanceof TileEntityEnergyBridge))
 				{
-					System.out.println("Expected TileEntityEnergyBridge @ " + pos + " but found " + te + ". Try replacing the affected block");
+					EnergyConverters.Log.error("Expected TileEntityEnergyBridge @ " + pos + " but found " + te + ". Try replacing the affected block");
 					continue;
 				}
 				if(te.isInvalid()) continue;
