@@ -10,7 +10,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.tiles.TileEntityEnergyBridge;
 
 public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
@@ -47,8 +49,9 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
             TileEntity te = worldIn.getTileEntity(pos);
             if(te instanceof TileEntityEnergyBridge)
             {
-                double amount = ((TileEntityEnergyBridge)te).getStoredEnergy();
-                playerIn.sendStatusMessage(new TextComponentString("StoredAmount: " + amount));
+                double amount = ((TileEntityEnergyBridge) te).getStoredEnergy();
+                playerIn.sendStatusMessage(new TextComponentTranslation(EnergyConverters.MOD_ID + ".energybridge.stored", Math.round(amount)), true);
+            }
         }
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
     }

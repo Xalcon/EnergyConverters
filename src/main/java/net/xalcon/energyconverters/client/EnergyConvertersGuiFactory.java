@@ -13,6 +13,18 @@ public class EnergyConvertersGuiFactory implements IModGuiFactory
     public void initialize(Minecraft mc) { }
 
     @Override
+    public boolean hasConfigGui()
+    {
+        return true;
+    }
+
+    @Override
+    public GuiScreen createConfigGui(GuiScreen parentScreen)
+    {
+        return new EnergyConvertersGuiConfig(parentScreen);
+    }
+
+    @Override
     public Class<? extends GuiScreen> mainConfigGuiClass()
     {
         return EnergyConvertersGuiConfig.class;

@@ -31,3 +31,5 @@ tile.energy_consumer_fe.name=FE Energy Consumer
 tile.energy_producer_tesla.name=Tesla Energy Producer
 tile.energy_consumer_tesla.name=Tesla Energy Consumer
 itemGroup.energy_converters=Energy Converters
+
+energyconverters.energybridge.stored=Energy Stored: %s
