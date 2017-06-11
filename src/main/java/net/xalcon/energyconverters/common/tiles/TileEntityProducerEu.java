@@ -12,11 +12,11 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.EnergyConverters;
 
 @Optional.Interface(iface="ic2.api.energy.tile.IEnergySource", modid="ic2", striprefs=true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource
 {
-	private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
 	private double maxEnergyUnits;
 	private boolean addedToNet;
 	private int tier;
@@ -44,7 +44,6 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 
 	private void onLoaded()
 	{
-		System.out.println("onLoad (isRemote: "+this.getWorld().isRemote+")");
 		super.onLoad();
 		if(this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -55,7 +54,6 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void invalidate()
 	{
-		System.out.println("invalidate (isRemote: "+this.getWorld().isRemote+")");
 		super.invalidate();
 		onChunkUnload();
 	}
@@ -63,7 +61,6 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void onChunkUnload()
 	{
-		System.out.println("OnChunkUnload (isRemote: "+this.getWorld().isRemote+")");
 		super.onChunkUnload();
 		if (this.addedToNet && Info.isIc2Available())
 		{
@@ -83,14 +80,14 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public double getOfferedEnergy()
 	{
-		return Math.min(getBridgeEnergyStored() / EU_TO_EC_CONVERSION_FACTOR, this.maxEnergyUnits);
+		return Math.min(getBridgeEnergyStored() / EnergyConverters.getConfig().getIc2Conversion(), this.maxEnergyUnits);
 	}
 
 	@Optional.Method(modid = "ic2")
 	@Override
 	public void drawEnergy(double v)
 	{
-		this.retrieveEnergyFromBridge(v * EU_TO_EC_CONVERSION_FACTOR, false);
+		this.retrieveEnergyFromBridge(v * EnergyConverters.getConfig().getIc2Conversion(), false);
 	}
 
 	@Optional.Method(modid = "ic2")

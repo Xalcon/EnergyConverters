@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.xalcon.energyconverters.EnergyConverters;
 
 public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer implements IEnergyProvider, ITickable
 {
@@ -30,12 +31,13 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate)
 	{
-		return (int) this.retrieveEnergyFromBridge(maxExtract, simulate);
+		return (int)(this.retrieveEnergyFromBridge(maxExtract, simulate) / EnergyConverters.getConfig().getRfConversion());
 	}
 
 	@Override
 	public void update()
 	{
+		double ratio = EnergyConverters.getConfig().getRfConversion();
 		for (EnumFacing facing : EnumFacing.VALUES)
 		{
 			BlockPos pos = this.pos.offset(facing);
@@ -47,7 +49,7 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 				if (rcv.canConnectEnergy(facing.getOpposite()))
 				{
 					int o = (int) this.getBridgeEnergyStored();
-					int v = rcv.receiveEnergy(facing.getOpposite(), o, false);
+					double v = rcv.receiveEnergy(facing.getOpposite(), (int) (o / ratio), false) * ratio;
 					this.retrieveEnergyFromBridge(v, false);
 				}
 			}

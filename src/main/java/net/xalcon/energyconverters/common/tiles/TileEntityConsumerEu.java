@@ -12,11 +12,11 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.EnergyConverters;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2", striprefs = true)
 public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer implements ITickable, IEnergySink
 {
-	private final static double EU_TO_EC_CONVERSION_FACTOR = 4;
 	private boolean addedToNet;
 	private int tier;
 	private double tierEnergyMax;
@@ -48,7 +48,6 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 
 	private void onLoaded()
 	{
-		System.out.println("onLoad (isRemote: " + this.getWorld().isRemote + ")");
 		super.onLoad();
 		if (this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -58,7 +57,6 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void invalidate()
 	{
-		System.out.println("invalidate (isRemote: " + this.getWorld().isRemote + ")");
 		super.invalidate();
 		onChunkUnload();
 	}
@@ -66,7 +64,6 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public void onChunkUnload()
 	{
-		System.out.println("OnChunkUnload (isRemote: " + this.getWorld().isRemote + ")");
 		super.onChunkUnload();
 		if (this.addedToNet && Info.isIc2Available())
 		{
@@ -109,8 +106,9 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public double injectEnergy(EnumFacing enumFacing, double amount, double tier)
 	{
+		double ratio = EnergyConverters.getConfig().getIc2Conversion();
 		// return the amount of energy we didn't consume
-		return amount - (this.addEnergyToBridge(amount * EU_TO_EC_CONVERSION_FACTOR, false) / EU_TO_EC_CONVERSION_FACTOR);
+		return amount - (this.addEnergyToBridge(amount * ratio, false) / ratio);
 	}
 
 	@Optional.Method(modid = "ic2")

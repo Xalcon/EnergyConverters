@@ -2,6 +2,7 @@ package net.xalcon.energyconverters.common.tiles;
 
 import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.util.EnumFacing;
+import net.xalcon.energyconverters.EnergyConverters;
 
 public class TileEntityConsumerRf extends TileEntityEnergyConvertersConsumer implements IEnergyReceiver
 {
@@ -26,6 +27,7 @@ public class TileEntityConsumerRf extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
 	{
-		return (int) this.addEnergyToBridge(maxReceive, simulate);
+		double ratio = EnergyConverters.getConfig().getRfConversion();
+		return (int) (this.addEnergyToBridge(maxReceive * ratio, simulate) / ratio);
 	}
 }

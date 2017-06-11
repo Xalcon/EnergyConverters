@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.xalcon.energyconverters.common.init.ModBlocks;
 
-public abstract class ModProxy
+public abstract class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
