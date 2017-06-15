@@ -30,4 +30,6 @@ tile.energy_producer_fe.name=FE 输出器
 tile.energy_consumer_fe.name=FE 输入器
 tile.energy_producer_tesla.name=Tesla 能源输出器
 tile.energy_consumer_tesla.name=Tesla 能源输入器
-itemGroup.energy_converters=能量转换
+itemGroup.energy_converters=能源转换
+
+energyconverters.energybridge.stored=能源缓冲量: %s
