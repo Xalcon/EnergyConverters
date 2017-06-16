@@ -2,6 +2,7 @@ package net.xalcon.energyconverters.common;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.xalcon.energyconverters.common.init.ModBlocks;
 
 public class CreativeTabEnergyConverters extends CreativeTabs
@@ -14,8 +15,8 @@ public class CreativeTabEnergyConverters extends CreativeTabs
     }
 
     @Override
-    public Item getTabIconItem()
+    public ItemStack getTabIconItem()
     {
-        return Item.getItemFromBlock(ModBlocks.EnergyBridge);
+        return new ItemStack(Item.getItemFromBlock(ModBlocks.EnergyBridge));
     }
 }

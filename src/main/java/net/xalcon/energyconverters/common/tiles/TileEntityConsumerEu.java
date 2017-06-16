@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
 
-@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2", striprefs = true)
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2", striprefs = true)
 public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer implements ITickable, IEnergySink
 {
 	private boolean addedToNet;
@@ -83,7 +83,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 
 
 	//region IEnergySink implementation
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public double getDemandedEnergy()
 	{
@@ -95,14 +95,14 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 		return 0;
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public int getSinkTier()
 	{
 		return this.tier;
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public double injectEnergy(EnumFacing enumFacing, double amount, double tier)
 	{
@@ -111,7 +111,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 		return amount - (this.addEnergyToBridge(amount * ratio, false) / ratio);
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public boolean acceptsEnergyFrom(IEnergyEmitter iEnergyEmitter, EnumFacing enumFacing)
 	{

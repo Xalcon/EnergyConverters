@@ -7,9 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.xalcon.energyconverters.common.blocks.BlockConverterTechRebornBase;
 import net.xalcon.energyconverters.common.blocks.EnumTypeVoltage;
-import techreborn.parts.TechRebornParts;
 
 public class ModRecipes
 {
@@ -18,65 +16,7 @@ public class ModRecipes
 		initBasic();
 		initTesla();
 		initIC2();
-		initTechReborn();
-	}
-
-	private static void initTechReborn()
-	{
-		if(Loader.isModLoaded("techreborn"))
-		{
-			GameRegistry.addRecipe(new ShapedOreRecipe(
-					new ItemStack(ModBlocks.ProducerTechReborn, 1, 0),
-					"SCS", "TMG", "ScS",
-					'S', "stone",
-					'C', new ItemStack(TechRebornParts.cables, 0, 5),
-					'T', new ItemStack(techreborn.init.ModBlocks.LV_TRANSFORMER, 1),
-					'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_FRAMES, 1),
-					'G', "ingotGold",
-					'c', "circuitBasic"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(
-					new ItemStack(ModBlocks.ProducerTechReborn, 1, 1),
-					"SCS", "TMG", "ScS",
-					'S', "stone",
-					'C', new ItemStack(TechRebornParts.cables, 0, 6),
-					'T', new ItemStack(techreborn.init.ModBlocks.LV_TRANSFORMER, 1),
-					'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_FRAMES, 1),
-					'G', "ingotGold",
-					'c', "circuitBasic"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(
-					new ItemStack(ModBlocks.ProducerTechReborn, 1, 2),
-					"SCS", "TMG", "ScS",
-					'S', "stone",
-					'C', new ItemStack(TechRebornParts.cables, 0, 7),
-					'T', new ItemStack(techreborn.init.ModBlocks.MV_TRANSFORMER, 1),
-					'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1),
-					'G', "ingotGold",
-					'c', "circuitBasic"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(
-					new ItemStack(ModBlocks.ProducerTechReborn, 1, 3),
-					"SCS", "TMG", "ScS",
-					'S', "stone",
-					'C', new ItemStack(TechRebornParts.cables, 0, 4),
-					'T', new ItemStack(techreborn.init.ModBlocks.HV_TRANSFORMER, 1),
-					'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1),
-					'G', "ingotGold",
-					'c', "circuitBasic"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(
-					new ItemStack(ModBlocks.ProducerTechReborn, 1, 4),
-					"SCS", "TMG", "ScS",
-					'S', "stone",
-					'C', new ItemStack(TechRebornParts.cables, 0, 4),
-					'T', new ItemStack(techreborn.init.ModBlocks.HV_TRANSFORMER, 1),
-					'M', new ItemStack(techreborn.init.ModBlocks.MACHINE_CASINGS, 1, 1),
-					'G', "ingotGold",
-					'c', "circuitAdvanced"));
-
-			for(BlockConverterTechRebornBase.PowerTierMap t : BlockConverterTechRebornBase.PowerTierMap.values())
-			{
-				GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTechReborn, 1, t.getMeta()), new ItemStack(ModBlocks.ProducerTechReborn, 1, t.getMeta()));
-				GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTechReborn, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerTechReborn, 1, t.getMeta()));
-			}
-		}
+		initBuildcraft();
 	}
 
 	public static void initBasic()
@@ -132,7 +72,7 @@ public class ModRecipes
 
 	private static void initIC2()
 	{
-		if(Loader.isModLoaded("IC2"))
+		if(Loader.isModLoaded("ic2"))
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(
 					new ItemStack(ModBlocks.ProducerEu, 1, 0),
@@ -208,6 +148,24 @@ public class ModRecipes
 
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTesla), ModBlocks.ProducerTesla);
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTesla), ModBlocks.ConsumerTesla);
+		}
+	}
+
+	private static void initBuildcraft()
+	{
+		if(Loader.isModLoaded("buildcraftcore") && Loader.isModLoaded("buildcraftenergy") && Loader.isModLoaded("buildcrafttransport"))
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(
+					new ItemStack(ModBlocks.ProducerMj),
+					"SIS", "EPG", "SIS",
+					'S', "stone",
+					'I', Item.REGISTRY.getObject(new ResourceLocation("buildcraftcore", "gear_iron")),
+					'E', new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("buildcraftcore", "engine")), 1, 1),
+					'P', Item.REGISTRY.getObject(new ResourceLocation("buildcrafttransport", "pipe_wood_item")),
+					'G', "ingotGold"));
+
+			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerMj), ModBlocks.ProducerMj);
+			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerMj), ModBlocks.ConsumerMj);
 		}
 	}
 }

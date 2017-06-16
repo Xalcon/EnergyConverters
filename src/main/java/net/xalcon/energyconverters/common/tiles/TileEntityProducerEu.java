@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
 
-@Optional.Interface(iface="ic2.api.energy.tile.IEnergySource", modid="IC2", striprefs=true)
+@Optional.Interface(iface="ic2.api.energy.tile.IEnergySource", modid="ic2", striprefs=true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource
 {
 	private double maxEnergyUnits;
@@ -76,28 +76,28 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 		if(!addedToNet) onLoaded();
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public double getOfferedEnergy()
 	{
 		return Math.min(getBridgeEnergyStored() / EnergyConverters.getConfig().getIc2Conversion(), this.maxEnergyUnits);
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public void drawEnergy(double v)
 	{
 		this.retrieveEnergyFromBridge(v * EnergyConverters.getConfig().getIc2Conversion(), false);
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public int getSourceTier()
 	{
 		return this.tier;
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor iEnergyAcceptor, EnumFacing enumFacing)
 	{
