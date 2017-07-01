@@ -8,9 +8,11 @@ import net.xalcon.energyconverters.common.tiles.TileEntityProducerFe;
 
 public class BlockProducerFe extends BlockBase implements ITileEntityProvider
 {
+	public final static String INTERNAL_NAME = "energy_producer_fe";
+
 	public BlockProducerFe()
 	{
-		super(Material.IRON, "energy_producer_fe");
+		super(Material.IRON, INTERNAL_NAME);
 	}
 
 	@Override

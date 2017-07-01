@@ -8,11 +8,13 @@ import net.xalcon.energyconverters.common.tiles.TileEntityTeslaConsumer;
 
 import javax.annotation.Nonnull;
 
-public class BlockTeslaConsumer extends BlockBase implements ITileEntityProvider
+public class BlockConsumerTesla extends BlockBase implements ITileEntityProvider
 {
-	public BlockTeslaConsumer()
+	public final static String INTERNAL_NAME = "energy_consumer_tesla";
+
+	public BlockConsumerTesla()
 	{
-		super(Material.IRON, "energy_consumer_tesla");
+		super(Material.IRON, INTERNAL_NAME);
 	}
 
 	@Override

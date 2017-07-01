@@ -1,14 +1,5 @@
 package net.xalcon.energyconverters.common.init;
 
-import ic2.api.item.IC2Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.xalcon.energyconverters.common.blocks.EnumTypeVoltage;
-
 public class ModRecipes
 {
 	public static void init()
@@ -21,7 +12,7 @@ public class ModRecipes
 
 	public static void initBasic()
 	{
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		/*GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModBlocks.EnergyBridge),
 				"IBI", "BEB", "IBI",
 				'I', "ingotIron",
@@ -67,12 +58,12 @@ public class ModRecipes
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerRf), ModBlocks.ProducerRf);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerRf), ModBlocks.ConsumerRf);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerFe), ModBlocks.ProducerFe);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerFe), ModBlocks.ConsumerFe);
+		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerFe), ModBlocks.ConsumerFe);*/
 	}
 
 	private static void initIC2()
 	{
-		if(Loader.isModLoaded("ic2"))
+		/*if(Loader.isModLoaded("ic2"))
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(
 					new ItemStack(ModBlocks.ProducerEu, 1, 0),
@@ -129,12 +120,12 @@ public class ModRecipes
 				GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()));
 				GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerEu, 1, t.getMeta()), new ItemStack(ModBlocks.ConsumerEu, 1, t.getMeta()));
 			}
-		}
+		}*/
 	}
 
 	private static void initTesla()
 	{
-		if(Loader.isModLoaded("tesla"))
+		/*if(Loader.isModLoaded("tesla"))
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(
 					new ItemStack(ModBlocks.ProducerTesla),
@@ -148,12 +139,12 @@ public class ModRecipes
 
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerTesla), ModBlocks.ProducerTesla);
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerTesla), ModBlocks.ConsumerTesla);
-		}
+		}*/
 	}
 
 	private static void initBuildcraft()
 	{
-		if(Loader.isModLoaded("buildcraftcore") && Loader.isModLoaded("buildcraftenergy") && Loader.isModLoaded("buildcrafttransport"))
+		/*if(Loader.isModLoaded("buildcraftcore") && Loader.isModLoaded("buildcraftenergy") && Loader.isModLoaded("buildcrafttransport"))
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(
 					new ItemStack(ModBlocks.ProducerMj),
@@ -166,6 +157,6 @@ public class ModRecipes
 
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ConsumerMj), ModBlocks.ProducerMj);
 			GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ProducerMj), ModBlocks.ConsumerMj);
-		}
+		}*/
 	}
 }

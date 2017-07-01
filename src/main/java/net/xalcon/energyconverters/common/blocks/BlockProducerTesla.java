@@ -8,11 +8,13 @@ import net.xalcon.energyconverters.common.tiles.TileEntityTeslaProducer;
 
 import javax.annotation.Nonnull;
 
-public class BlockTeslaProducer extends BlockBase implements ITileEntityProvider
+public class BlockProducerTesla extends BlockBase implements ITileEntityProvider
 {
-	public BlockTeslaProducer()
+	public final static String INTERNAL_NAME = "energy_producer_tesla";
+
+	public BlockProducerTesla()
 	{
-		super(Material.IRON, "energy_producer_tesla");
+		super(Material.IRON, INTERNAL_NAME);
 	}
 
 	@Override

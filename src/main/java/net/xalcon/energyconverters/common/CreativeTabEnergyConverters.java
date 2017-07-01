@@ -17,6 +17,6 @@ public class CreativeTabEnergyConverters extends CreativeTabs
     @Override
     public ItemStack getTabIconItem()
     {
-        return new ItemStack(Item.getItemFromBlock(ModBlocks.EnergyBridge));
+        return new ItemStack(Item.getItemFromBlock(ModBlocks.getEnergyBridge()));
     }
 }

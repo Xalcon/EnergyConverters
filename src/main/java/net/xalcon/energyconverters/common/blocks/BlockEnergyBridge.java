@@ -9,7 +9,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.xalcon.energyconverters.EnergyConverters;
@@ -17,9 +16,11 @@ import net.xalcon.energyconverters.common.tiles.TileEntityEnergyBridge;
 
 public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
 {
+    public final static String INTERNAL_NAME = "energy_bridge";
+
     public BlockEnergyBridge()
     {
-        super(Material.IRON, "energy_bridge");
+        super(Material.IRON, INTERNAL_NAME);
     }
 
     @Override

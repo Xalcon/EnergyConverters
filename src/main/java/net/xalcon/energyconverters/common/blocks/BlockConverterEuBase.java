@@ -4,16 +4,16 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.xalcon.energyconverters.EnergyConverters;
+import net.minecraftforge.client.model.ModelLoader;
 
 public abstract class BlockConverterEuBase extends BlockBase
 {
@@ -25,17 +25,23 @@ public abstract class BlockConverterEuBase extends BlockBase
 	}
 
 	@Override
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 		for (EnumTypeVoltage t : EnumTypeVoltage.values())
-			list.add(new ItemStack(itemIn, 1, t.getMeta()));
+			list.add(new ItemStack(this, 1, t.getMeta()));
 	}
 
 	@Override
-	public void registerItemModel(ItemBlock itemBlock)
+	public Item createItemBlock()
+	{
+		return new ItemBlockEnumMeta<>(this, EnumTypeVoltage.values()).setRegistryName(this.getRegistryName());
+	}
+
+	@Override
+	public void registerItemModel(Item item)
 	{
 		for (EnumTypeVoltage t : EnumTypeVoltage.values())
-			EnergyConverters.Proxy.registerItemRenderer(itemBlock, t.getMeta(), this.internalName, "tier=" + t.getName());
+			ModelLoader.setCustomModelResourceLocation(item, t.getMeta(), new ModelResourceLocation(this.getRegistryName(), "tier=" + t.getName()));
 	}
 
 	@Override

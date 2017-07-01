@@ -26,10 +26,10 @@ public class ModTileEntities
 			GameRegistry.registerTileEntity(TileEntityTeslaConsumer.class, "tileentity_consumer_tesla");
 		}
 
-		if (Loader.isModLoaded("buildcraftenergy"))
+		/*if (Loader.isModLoaded("buildcraftenergy"))
 		{
 			GameRegistry.registerTileEntity(TileEntityProducerMj.class, "tileentity_producer_mj");
 			GameRegistry.registerTileEntity(TileEntityConsumerMj.class, "tileentity_consumer_mj");
-		}
+		}*/
 	}
 }

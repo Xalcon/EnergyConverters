@@ -1,68 +1,145 @@
 package net.xalcon.energyconverters.common.init;
 
-import net.minecraft.item.ItemBlock;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.xalcon.energyconverters.common.CreativeTabEnergyConverters;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.blocks.*;
 
+@Mod.EventBusSubscriber
+@GameRegistry.ObjectHolder(EnergyConverters.MOD_ID)
 public class ModBlocks
 {
-    public static BlockEnergyBridge EnergyBridge;
-    public static BlockProducerEu ProducerEu;
-    public static BlockConsumerEu ConsumerEu;
-    public static BlockProducerRf ProducerRf;
-    public static BlockConsumerRf ConsumerRf;
-    public static BlockTeslaProducer ProducerTesla;
-    public static BlockTeslaConsumer ConsumerTesla;
-    public static BlockProducerFe ProducerFe;
-    public static BlockConsumerFe ConsumerFe;
-    public static BlockProducerMj ProducerMj;
-    public static BlockConsumerMj ConsumerMj;
+    @GameRegistry.ObjectHolder(BlockEnergyBridge.INTERNAL_NAME)
+    private static BlockEnergyBridge energyBridge;
 
-    public static void init()
+    @GameRegistry.ObjectHolder(BlockProducerEu.INTERNAL_NAME)
+    private static BlockProducerEu producerEu;
+
+    @GameRegistry.ObjectHolder(BlockConsumerEu.INTERNAL_NAME)
+    private static BlockConsumerEu consumerEu;
+
+    @GameRegistry.ObjectHolder(BlockProducerRf.INTERNAL_NAME)
+    private static BlockProducerRf producerRf;
+
+    @GameRegistry.ObjectHolder(BlockConsumerRf.INTERNAL_NAME)
+    private static BlockConsumerRf consumerRf;
+
+    @GameRegistry.ObjectHolder(BlockProducerTesla.INTERNAL_NAME)
+    private static BlockProducerTesla producerTesla;
+
+    @GameRegistry.ObjectHolder(BlockConsumerTesla.INTERNAL_NAME)
+    private static BlockConsumerTesla consumerTesla;
+
+    @GameRegistry.ObjectHolder(BlockProducerFe.INTERNAL_NAME)
+    private static BlockProducerFe producerFe;
+
+    @GameRegistry.ObjectHolder(BlockConsumerFe.INTERNAL_NAME)
+    private static BlockConsumerFe consumerFe;
+
+    /*@GameRegistry.ObjectHolder(BlockProducerMj.INTERNAL_NAME)
+    private static BlockProducerMj producerMj;
+
+    @GameRegistry.ObjectHolder(BlockConsumerMj.INTERNAL_NAME)
+    private static BlockConsumerMj consumerMj;*/
+
+    @SubscribeEvent
+    public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
     {
-        EnergyBridge = register(new BlockEnergyBridge());
+        event.getRegistry().register(new BlockEnergyBridge());
         if(Loader.isModLoaded("ic2"))
         {
-            ProducerEu = new BlockProducerEu();
-            register(ProducerEu, new ItemBlockEnumMeta<>(ProducerEu, EnumTypeVoltage.values()));
-            ConsumerEu = new BlockConsumerEu();
-            register(ConsumerEu, new ItemBlockEnumMeta<>(ConsumerEu, EnumTypeVoltage.values()));
+            event.getRegistry().register(new BlockProducerEu());
+            event.getRegistry().register(new BlockConsumerEu());
         }
 
         if(Loader.isModLoaded("tesla"))
         {
-            ProducerTesla = register(new BlockTeslaProducer());
-            ConsumerTesla = register(new BlockTeslaConsumer());
+            event.getRegistry().register(new BlockProducerTesla());
+            event.getRegistry().register(new BlockConsumerTesla());
         }
 
-        ProducerRf = register(new BlockProducerRf());
-        ConsumerRf = register(new BlockConsumerRf());
+        event.getRegistry().register(new BlockProducerRf());
+        event.getRegistry().register(new BlockConsumerRf());
 
-        ProducerFe = register(new BlockProducerFe());
-        ConsumerFe = register(new BlockConsumerFe());
+        event.getRegistry().register(new BlockProducerFe());
+        event.getRegistry().register(new BlockConsumerFe());
 
-        if (Loader.isModLoaded("buildcraftenergy"))
+        /*if (Loader.isModLoaded("buildcraftenergy"))
         {
-            ProducerMj = register(new BlockProducerMj());
-            ConsumerMj = register(new BlockConsumerMj());
+            event.getRegistry().register(new BlockProducerMj());
+            event.getRegistry().register(new BlockConsumerMj());
+        }*/
+    }
+
+    @SubscribeEvent
+    public static void onRegisterItems(RegistryEvent.Register<Item> event)
+    {
+        event.getRegistry().register(energyBridge.createItemBlock());
+        if(Loader.isModLoaded("ic2"))
+        {
+            event.getRegistry().register(producerEu.createItemBlock());
+            event.getRegistry().register(consumerEu.createItemBlock());
         }
+
+        if(Loader.isModLoaded("tesla"))
+        {
+            event.getRegistry().register(consumerTesla.createItemBlock());
+            event.getRegistry().register(producerTesla.createItemBlock());
+        }
+
+        event.getRegistry().register(producerRf.createItemBlock());
+        event.getRegistry().register(consumerRf.createItemBlock());
+
+        event.getRegistry().register(producerFe.createItemBlock());
+        event.getRegistry().register(consumerFe.createItemBlock());
+
+        /*if (Loader.isModLoaded("buildcraftenergy"))
+        {
+            event.getRegistry().register(producerMj.createItemBlock());
+            event.getRegistry().register(consumerMj.createItemBlock());
+        }*/
     }
 
-
-    private static <T extends BlockBase> T register(T block, ItemBlock itemBlock)
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void onRegisterModels(ModelRegistryEvent event)
     {
-        itemBlock.setRegistryName(block.getRegistryName());
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-        block.setCreativeTab(CreativeTabEnergyConverters.Instance);
-        block.registerItemModel(itemBlock);
-        return block;
+        energyBridge.registerItemModel(Item.getItemFromBlock(energyBridge));
+        producerFe.registerItemModel(Item.getItemFromBlock(producerFe));
+        consumerFe.registerItemModel(Item.getItemFromBlock(consumerFe));
+
+        if(Loader.isModLoaded("ic2"))
+        {
+            producerEu.registerItemModel(Item.getItemFromBlock(producerEu));
+            consumerEu.registerItemModel(Item.getItemFromBlock(consumerEu));
+        }
+
+        if(Loader.isModLoaded("tesla"))
+        {
+            consumerTesla.registerItemModel(Item.getItemFromBlock(consumerTesla));
+            producerTesla.registerItemModel(Item.getItemFromBlock(producerTesla));
+        }
+
+        producerRf.registerItemModel(Item.getItemFromBlock(producerRf));
+        consumerRf.registerItemModel(Item.getItemFromBlock(consumerRf));
+
+        /*if (Loader.isModLoaded("buildcraftenergy"))
+        {
+            producerMj.registerItemModel(Item.getItemFromBlock(producerMj));
+            consumerMj.registerItemModel(Item.getItemFromBlock(consumerMj));
+        }*/
     }
 
-    private static <T extends BlockBase> T register(T block)
+    public static BlockEnergyBridge getEnergyBridge()
     {
-        return register(block, new ItemBlock(block));
+        return energyBridge;
     }
 }

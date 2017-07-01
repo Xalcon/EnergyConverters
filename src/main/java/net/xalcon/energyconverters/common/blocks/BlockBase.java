@@ -2,8 +2,11 @@ package net.xalcon.energyconverters.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.xalcon.energyconverters.EnergyConverters;
+import net.minecraftforge.client.model.ModelLoader;
+import net.xalcon.energyconverters.common.CreativeTabEnergyConverters;
 
 public class BlockBase extends Block
 {
@@ -13,14 +16,20 @@ public class BlockBase extends Block
     {
         super(material);
         this.internalName = name;
-        setUnlocalizedName(this.internalName);
-        setRegistryName(this.internalName);
+        this.setUnlocalizedName(this.internalName);
+        this.setRegistryName(this.internalName);
         this.setHardness(2);
         this.setResistance(5);
+        this.setCreativeTab(CreativeTabEnergyConverters.Instance);
     }
 
-    public void registerItemModel(ItemBlock itemBlock)
+    public Item createItemBlock()
     {
-        EnergyConverters.Proxy.registerItemRenderer(itemBlock, 0, this.internalName);
+        return new ItemBlock(this).setRegistryName(this.getRegistryName());
+    }
+
+    public void registerItemModel(Item item)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(this.getRegistryName(), "inventory"));
     }
 }

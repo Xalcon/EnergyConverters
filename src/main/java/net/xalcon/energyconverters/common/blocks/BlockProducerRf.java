@@ -8,9 +8,11 @@ import net.xalcon.energyconverters.common.tiles.TileEntityProducerRf;
 
 public class BlockProducerRf extends BlockBase implements ITileEntityProvider
 {
+	public final static String INTERNAL_NAME = "energy_producer_rf";
+
 	public BlockProducerRf()
 	{
-		super(Material.IRON, "energy_producer_rf");
+		super(Material.IRON, INTERNAL_NAME);
 	}
 
 	@Override

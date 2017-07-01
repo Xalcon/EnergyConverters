@@ -28,7 +28,7 @@ public abstract class TileEntityConverterBase extends TileEntity
 			{
 				BlockPos pos = this.pos.offset(direction);
 				IBlockState blockState = this.getWorld().getBlockState(pos);
-				if(blockState.getBlock() != ModBlocks.EnergyBridge) continue;
+				if(blockState.getBlock() != ModBlocks.getEnergyBridge()) continue;
 				TileEntity te = this.getWorld().getTileEntity(pos);
 				if(te == null || !(te instanceof TileEntityEnergyBridge))
 				{

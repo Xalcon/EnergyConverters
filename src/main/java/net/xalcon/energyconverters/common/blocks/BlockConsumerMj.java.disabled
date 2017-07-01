@@ -4,15 +4,17 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.xalcon.energyconverters.common.tiles.TileEntityProducerMj;
+import net.xalcon.energyconverters.common.tiles.TileEntityConsumerMj;
 
 import javax.annotation.Nullable;
 
-public class BlockProducerMj extends BlockBase implements ITileEntityProvider
+public class BlockConsumerMj extends BlockBase implements ITileEntityProvider
 {
-	public BlockProducerMj()
+	public final static String INTERNAL_NAME = "energy_consumer_mj";
+
+	public BlockConsumerMj()
 	{
-		super(Material.IRON, "energy_producer_mj");
+		super(Material.IRON, INTERNAL_NAME);
 	}
 
 	/**
@@ -25,6 +27,6 @@ public class BlockProducerMj extends BlockBase implements ITileEntityProvider
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		return new TileEntityProducerMj();
+		return new TileEntityConsumerMj();
 	}
 }
