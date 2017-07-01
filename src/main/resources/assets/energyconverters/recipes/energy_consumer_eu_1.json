@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ic2"
+    }
+  ],
+  "result": {
+    "item": "energyconverters:energy_consumer_eu",
+    "data": 1
+  },
+  "ingredients": [
+    {
+      "item": "energyconverters:energy_producer_eu",
+      "data": 1
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

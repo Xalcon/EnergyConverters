@@ -1,0 +1,44 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ic2"
+    }
+  ],
+  "result": {
+    "item": "energyconverters:energy_producer_eu",
+    "data": 3
+  },
+  "pattern": [
+    "SCS",
+    "TMG",
+    "ScS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "#STONE"
+    },
+    "C": {
+      "nbt": "{ type: 3b, insulation: 3b }",
+      "item": "ic2:cable",
+      "type": "energyconverters:item_nbt_ex",
+      "data": 3
+    },
+    "c": {
+      "item": "ic2:crafting",
+      "data": 5
+    },
+    "T": {
+      "item": "ic2:te",
+      "data": 80
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    },
+    "M": {
+      "item": "ic2:resource",
+      "data": 12
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tesla"
+    }
+  ],
+  "result": {
+    "item": "energyconverters:energy_producer_tesla"
+  },
+  "pattern": [
+    "SQS",
+    "FBG",
+    "SbS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "Q": {
+      "item": "#GEMQUARTZ"
+    },
+    "B": {
+      "item": "#BLOCKIRON"
+    },
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "#STONE"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    }
+  }
+}

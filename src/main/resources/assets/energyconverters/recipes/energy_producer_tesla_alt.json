@@ -1,0 +1,17 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tesla"
+    }
+  ],
+  "result": {
+    "item": "energyconverters:energy_producer_tesla"
+  },
+  "ingredients": [
+    {
+      "item": "energyconverters:energy_consumer_tesla"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

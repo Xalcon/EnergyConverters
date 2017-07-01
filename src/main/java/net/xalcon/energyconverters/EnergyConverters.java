@@ -5,7 +5,6 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.xalcon.energyconverters.common.EnergyConvertersConfig;
-import net.xalcon.energyconverters.common.init.ModRecipes;
 import net.xalcon.energyconverters.common.init.ModTileEntities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,11 +32,5 @@ public class EnergyConverters
     {
         ModTileEntities.init();
         configHandler = new EnergyConvertersConfig(event.getSuggestedConfigurationFile());
-    }
-
-    @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-        ModRecipes.init();
     }
 }

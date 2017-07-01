@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "energyconverters:energy_consumer_fe"
+  },
+  "ingredients": [
+    {
+      "item": "energyconverters:energy_producer_fe"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

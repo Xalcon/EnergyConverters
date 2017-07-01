@@ -1,0 +1,17 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "buildcraftenergy"
+    }
+  ],
+  "result": {
+    "item": "energyconverters:energy_consumer_mj"
+  },
+  "ingredients": [
+    {
+      "item": "energyconverters:energy_producer_mj"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

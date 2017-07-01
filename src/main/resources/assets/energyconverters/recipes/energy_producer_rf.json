@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "redstoneflux"
+    }
+  ],
+  "result": {
+    "item": "energyconverters:energy_producer_rf"
+  },
+  "pattern": [
+    "SIS",
+    "FBG",
+    "SbS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "#BLOCKIRON"
+    },
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "#STONE"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

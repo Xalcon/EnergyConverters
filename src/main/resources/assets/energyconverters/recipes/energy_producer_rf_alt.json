@@ -1,0 +1,17 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "redstoneflux"
+    }
+  ],
+  "result": {
+    "item": "energyconverters:energy_producer_rf"
+  },
+  "ingredients": [
+    {
+      "item": "energyconverters:energy_consumer_rf"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

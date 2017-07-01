@@ -1,0 +1,31 @@
+{
+  "result": {
+    "item": "energyconverters:energy_producer_fe"
+  },
+  "pattern": [
+    "SIS",
+    "FBG",
+    "SbS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "#BLOCKREDSTONE"
+    },
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "#STONE"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

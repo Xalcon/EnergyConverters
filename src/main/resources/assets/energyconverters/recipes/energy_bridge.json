@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "energyconverters:energy_bridge"
+  },
+  "pattern": [
+    "IBI",
+    "BEB",
+    "IBI"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}
