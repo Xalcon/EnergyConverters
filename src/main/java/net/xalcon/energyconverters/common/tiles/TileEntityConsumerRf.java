@@ -1,9 +1,11 @@
 package net.xalcon.energyconverters.common.tiles;
 
-import cofh.api.energy.IEnergyReceiver;
+import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
 
+@Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyReceiver", modid = "redstoneflux", striprefs = true)
 public class TileEntityConsumerRf extends TileEntityEnergyConvertersConsumer implements IEnergyReceiver
 {
 	@Override

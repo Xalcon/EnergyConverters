@@ -28,6 +28,7 @@ minecraft {
 }
 
 repositories {
+    maven { url = "http://maven.covers1624.net" } // COFH Mods
     maven { url = "http://maven.ic2.player.to/" }
     maven { url 'http://maven.epoxide.xyz' } // Tesla
 	maven { url = "http://dvs1.progwml6.com/files/maven" } // JEI
@@ -38,8 +39,9 @@ dependencies {
     deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}"
     deobfCompile "net.darkhax.tesla:Tesla-${mc_version}:${tesla_version}"
 	deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
 
-    compile name: "buildcraft", version: "7.99.4"
+    //compile name: "buildcraft", version: "7.99.4"
 	
 	runtime "net.industrial-craft:industrialcraft-2:${ic2_version}:universal"
 	runtime "mezz.jei:jei_${mc_version}:${jei_version}"

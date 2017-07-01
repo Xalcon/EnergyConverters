@@ -54,6 +54,9 @@ public class ModBlocks
     public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
     {
         event.getRegistry().register(new BlockEnergyBridge());
+        event.getRegistry().register(new BlockProducerFe());
+        event.getRegistry().register(new BlockConsumerFe());
+
         if(Loader.isModLoaded("ic2"))
         {
             event.getRegistry().register(new BlockProducerEu());
@@ -66,11 +69,11 @@ public class ModBlocks
             event.getRegistry().register(new BlockConsumerTesla());
         }
 
-        event.getRegistry().register(new BlockProducerRf());
-        event.getRegistry().register(new BlockConsumerRf());
-
-        event.getRegistry().register(new BlockProducerFe());
-        event.getRegistry().register(new BlockConsumerFe());
+        if(Loader.isModLoaded("redstoneflux"))
+        {
+            event.getRegistry().register(new BlockProducerRf());
+            event.getRegistry().register(new BlockConsumerRf());
+        }
 
         /*if (Loader.isModLoaded("buildcraftenergy"))
         {
@@ -83,6 +86,9 @@ public class ModBlocks
     public static void onRegisterItems(RegistryEvent.Register<Item> event)
     {
         event.getRegistry().register(energyBridge.createItemBlock());
+        event.getRegistry().register(producerFe.createItemBlock());
+        event.getRegistry().register(consumerFe.createItemBlock());
+
         if(Loader.isModLoaded("ic2"))
         {
             event.getRegistry().register(producerEu.createItemBlock());
@@ -95,11 +101,11 @@ public class ModBlocks
             event.getRegistry().register(producerTesla.createItemBlock());
         }
 
-        event.getRegistry().register(producerRf.createItemBlock());
-        event.getRegistry().register(consumerRf.createItemBlock());
-
-        event.getRegistry().register(producerFe.createItemBlock());
-        event.getRegistry().register(consumerFe.createItemBlock());
+        if(Loader.isModLoaded("redstoneflux"))
+        {
+            event.getRegistry().register(producerRf.createItemBlock());
+            event.getRegistry().register(consumerRf.createItemBlock());
+        }
 
         /*if (Loader.isModLoaded("buildcraftenergy"))
         {
@@ -128,8 +134,11 @@ public class ModBlocks
             producerTesla.registerItemModel(Item.getItemFromBlock(producerTesla));
         }
 
-        producerRf.registerItemModel(Item.getItemFromBlock(producerRf));
-        consumerRf.registerItemModel(Item.getItemFromBlock(consumerRf));
+        if(Loader.isModLoaded("redstoneflux"))
+        {
+            producerRf.registerItemModel(Item.getItemFromBlock(producerRf));
+            consumerRf.registerItemModel(Item.getItemFromBlock(consumerRf));
+        }
 
         /*if (Loader.isModLoaded("buildcraftenergy"))
         {

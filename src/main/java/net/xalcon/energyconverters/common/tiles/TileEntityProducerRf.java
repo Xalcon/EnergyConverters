@@ -1,13 +1,15 @@
 package net.xalcon.energyconverters.common.tiles;
 
-import cofh.api.energy.IEnergyProvider;
-import cofh.api.energy.IEnergyReceiver;
+import cofh.redstoneflux.api.IEnergyProvider;
+import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
 
+@Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyProvider", modid = "redstoneflux", striprefs = true)
 public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer implements IEnergyProvider, ITickable
 {
 	@Override
