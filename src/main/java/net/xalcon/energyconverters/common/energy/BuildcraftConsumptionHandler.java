@@ -4,6 +4,7 @@ import buildcraft.api.mj.IMjConnector;
 import buildcraft.api.mj.IMjReceiver;
 import buildcraft.api.mj.MjBattery;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.EnergyConverters;
 
 import javax.annotation.Nonnull;
 
@@ -45,7 +46,7 @@ public class BuildcraftConsumptionHandler implements IMjReceiver
 	@Override
 	public long receivePower(long microJoules, boolean simulate)
 	{
-		return (int) this.energyBridge.addEnergyToBridge(microJoules / 1000000d * 10d, simulate);
+		return (int) this.energyBridge.addEnergyToBridge(microJoules / 1000000d * EnergyConverters.getConfig().getMjConversion(), simulate);
 	}
 
 	/**
