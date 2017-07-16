@@ -7,6 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
+import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.energy.BuildcraftProductionHandler;
 
 import javax.annotation.Nullable;
@@ -43,7 +44,7 @@ public class TileEntityProducerMj extends TileEntityEnergyConvertersProducer imp
 				IMjReceiver energyStorage = te.getCapability(MjAPI.CAP_RECEIVER, facing.getOpposite());
 				if (energyStorage != null && energyStorage.canReceive())
 				{
-					long o = (long) (this.getBridgeEnergyStored() / 10 * 1_000_000);
+					long o = (long) (this.getBridgeEnergyStored() / EnergyConverters.getConfig().getMjConversion() * 1_000_000);
 					long v = energyStorage.receivePower(o, false);
 					this.retrieveEnergyFromBridge(o - v, false);
 				}

@@ -19,10 +19,12 @@ public class EnergyConvertersConfig
     private final Property propertyEuConversion;
     private final Property propertyRfConversion;
     private final Property propertyConversionLoss;
+    private final Property propertyMjConversion;
 
     private double bridgeEnergyBuffer;
     private double ic2Conversion;
     private double rfConversion;
+    private double mjConversion;
     private double conversionLoss;
 
     public double getBridgeEnergyBuffer()
@@ -40,6 +42,11 @@ public class EnergyConvertersConfig
         return this.rfConversion;
     }
 
+    public double getMjConversion()
+    {
+        return this.mjConversion;
+    }
+
     public double getConversionLoss()
     {
         return this.conversionLoss;
@@ -53,6 +60,7 @@ public class EnergyConvertersConfig
         this.propertyEnergyBridgeMax = config.get("settings", "energyBridgeBuffer", 10000.0, "Maximum amount of energy the bridge can buffer. This needs to be >0 otherwise, the bridge is not able to convert energy");
         this.propertyEuConversion = config.get("settings", "euConversionFactor", 4.0, "EU (IndustrialCraft2) to Energy Converters internal energy conversion factor.");
         this.propertyRfConversion = config.get("settings", "rfConversionFactor", 1.0, "RF (RedstoneFlux and ForgeEnergy) to Energy Converters internal energy conversion factor.");
+        this.propertyMjConversion = config.get("settings", "mjConversionFactor", 10.0, "MJ (Buildcraft MJ) to Energy Converters internal energy conversion factor.");
         this.propertyConversionLoss = config.get("settings", "conversionLoss", 0.0, "Percentage of energy lost on conversion.", 0, 100);
 
         this.syncConfig();
@@ -63,6 +71,7 @@ public class EnergyConvertersConfig
         this.bridgeEnergyBuffer = propertyEnergyBridgeMax.getDouble();
         this.ic2Conversion = propertyEuConversion.getDouble();
         this.rfConversion = propertyRfConversion.getDouble();
+        this.mjConversion = propertyMjConversion.getDouble();
         this.conversionLoss = propertyConversionLoss.getDouble() / 100.0;
 
         if (this.config.hasChanged())
