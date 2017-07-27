@@ -34,6 +34,7 @@ public class TileEntityProducerMj extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void update()
 	{
+		if(this.getWorld().isRemote) return;
 		for (EnumFacing facing : EnumFacing.VALUES)
 		{
 			BlockPos pos = this.pos.offset(facing);
@@ -44,9 +45,10 @@ public class TileEntityProducerMj extends TileEntityEnergyConvertersProducer imp
 				IMjReceiver energyStorage = te.getCapability(MjAPI.CAP_RECEIVER, facing.getOpposite());
 				if (energyStorage != null && energyStorage.canReceive())
 				{
-					long o = (long) (this.getBridgeEnergyStored() / EnergyConverters.getConfig().getMjConversion() * 1_000_000);
-					long v = energyStorage.receivePower(o, false);
-					this.retrieveEnergyFromBridge(o - v, false);
+					long availableMicroMj = (long) ((this.getBridgeEnergyStored() / EnergyConverters.getConfig().getMjConversion()) * 1_000_000);
+					long notAcceptedMicroMj = energyStorage.receivePower(availableMicroMj, false);
+					double usedEnergy = ((availableMicroMj - notAcceptedMicroMj) * EnergyConverters.getConfig().getMjConversion()) / 1_000_000;
+					this.retrieveEnergyFromBridge(usedEnergy, false);
 				}
 			}
 		}

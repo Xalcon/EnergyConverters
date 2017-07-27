@@ -51,7 +51,7 @@ repositories {
 	maven { url = "http://maven.modmuss50.me/" }
     ivy {
         name "BuildCraft"
-        artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision].[ext]"
+        artifactPattern "https://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision](-[classifier]).[ext]"
     }
 }
 
@@ -80,7 +80,7 @@ dependencies {
     deobfCompile "net.darkhax.tesla:Tesla:${tesla_version}"
 	deobfCompile "mezz.jei:jei_${mcversion}:${jei_version}:api"
 
-    compile name: "buildcraft", version: "7.99.4"
+    deobfCompile  name: "buildcraft", version: "7.99.6"
 	
 	
 	/*deobfCompile("RebornCore:RebornCore-${mcversion}:${reborncore_version}:universal"){
