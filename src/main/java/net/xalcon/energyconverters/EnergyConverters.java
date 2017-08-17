@@ -9,7 +9,12 @@ import net.xalcon.energyconverters.common.init.ModTileEntities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = EnergyConverters.MOD_ID, version = EnergyConverters.VERSION, guiFactory = EnergyConverters.GUI_FACTORY)
+@Mod(
+        modid = EnergyConverters.MOD_ID,
+        version = EnergyConverters.VERSION,
+        guiFactory = EnergyConverters.GUI_FACTORY,
+        acceptedMinecraftVersions = "*"
+)
 public class EnergyConverters
 {
     public static final String MOD_NAME = "EnergyConverters";
