@@ -44,11 +44,11 @@ public class ModBlocks
     @GameRegistry.ObjectHolder(BlockConsumerFe.INTERNAL_NAME)
     private static BlockConsumerFe consumerFe;
 
-    /*@GameRegistry.ObjectHolder(BlockProducerMj.INTERNAL_NAME)
+    @GameRegistry.ObjectHolder(BlockProducerMj.INTERNAL_NAME)
     private static BlockProducerMj producerMj;
 
     @GameRegistry.ObjectHolder(BlockConsumerMj.INTERNAL_NAME)
-    private static BlockConsumerMj consumerMj;*/
+    private static BlockConsumerMj consumerMj;
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
@@ -75,11 +75,11 @@ public class ModBlocks
             event.getRegistry().register(new BlockConsumerRf());
         }
 
-        /*if (Loader.isModLoaded("buildcraftenergy"))
+        if (Loader.isModLoaded("buildcraftenergy"))
         {
             event.getRegistry().register(new BlockProducerMj());
             event.getRegistry().register(new BlockConsumerMj());
-        }*/
+        }
     }
 
     @SubscribeEvent
@@ -107,11 +107,11 @@ public class ModBlocks
             event.getRegistry().register(consumerRf.createItemBlock());
         }
 
-        /*if (Loader.isModLoaded("buildcraftenergy"))
+        if (Loader.isModLoaded("buildcraftenergy"))
         {
             event.getRegistry().register(producerMj.createItemBlock());
             event.getRegistry().register(consumerMj.createItemBlock());
-        }*/
+        }
     }
 
     @SubscribeEvent
@@ -140,11 +140,11 @@ public class ModBlocks
             consumerRf.registerItemModel(Item.getItemFromBlock(consumerRf));
         }
 
-        /*if (Loader.isModLoaded("buildcraftenergy"))
+        if (Loader.isModLoaded("buildcraftenergy"))
         {
             producerMj.registerItemModel(Item.getItemFromBlock(producerMj));
             consumerMj.registerItemModel(Item.getItemFromBlock(consumerMj));
-        }*/
+        }
     }
 
     public static BlockEnergyBridge getEnergyBridge()

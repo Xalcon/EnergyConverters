@@ -24,6 +24,8 @@ tile.energy_consumer_tr.extreme.name=EV Energy Consumer (TechReborn)
 tile.energy_consumer_tr.insane.name=IV Energy Consumer (TechReborn)
 tile.energy_consumer_tr.infinite.name=INF Energy Consumer (TechReborn)
 
+tile.energy_producer_mj.name=MJ Energy Producer
+tile.energy_consumer_mj.name=MJ Energy Consumer
 tile.energy_producer_rf.name=RF Energy Producer
 tile.energy_consumer_rf.name=RF Energy Consumer
 tile.energy_producer_fe.name=FE Energy Producer

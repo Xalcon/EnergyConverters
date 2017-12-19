@@ -41,7 +41,7 @@ dependencies {
 	deobfCompile "mezz.jei:jei_1.12:${jei_version}:api"
     deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
 
-    //compile name: "buildcraft", version: "7.99.4"
+    compile name: "buildcraft", version: "7.99.12"
 	
 	runtime "net.industrial-craft:industrialcraft-2:${ic2_version}:universal"
 	runtime "mezz.jei:jei_1.12:${jei_version}"
