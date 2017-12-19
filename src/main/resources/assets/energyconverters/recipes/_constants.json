@@ -37,6 +37,13 @@
   {
     "ingredient": {
       "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "name": "GEARIRON"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
       "ore": "stone"
     },
     "name": "STONE"

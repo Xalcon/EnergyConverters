@@ -30,7 +30,7 @@
       "item": "#INGOTGOLD"
     },
     "I": {
-      "item": "buildcraftcore:gear_iron"
+      "item": "#GEARIRON"
     }
   }
 }
