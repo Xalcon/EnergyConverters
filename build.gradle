@@ -30,7 +30,7 @@ minecraft {
 repositories {
     maven { url = "http://maven.covers1624.net" } // COFH Mods
     maven { url = "http://maven.ic2.player.to/" }
-    maven { url 'http://maven.epoxide.xyz' } // Tesla
+    maven { url 'http://maven.mcmoddev.com' } // Tesla
 	maven { url = "http://dvs1.progwml6.com/files/maven" } // JEI
     ivy { artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision].[ext]" }
 }
