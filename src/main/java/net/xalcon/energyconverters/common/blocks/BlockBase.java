@@ -16,7 +16,7 @@ public class BlockBase extends Block
     {
         super(material);
         this.internalName = name;
-        this.setUnlocalizedName(this.internalName);
+        this.setTranslationKey(this.internalName);
         this.setRegistryName(this.internalName);
         this.setHardness(2);
         this.setResistance(5);

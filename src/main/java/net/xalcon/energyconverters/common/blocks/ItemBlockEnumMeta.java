@@ -23,9 +23,8 @@ public class ItemBlockEnumMeta<T extends Enum<T> & IStringSerializable> extends 
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + this.values[stack.getMetadata()].getName();
+	public String getTranslationKey(ItemStack stack)
+	{
+		return super.getTranslationKey(stack) + "." + this.values[stack.getMetadata()].getName();
 	}
-
-
 }

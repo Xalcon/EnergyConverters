@@ -9,13 +9,13 @@ public class CreativeTabEnergyConverters extends CreativeTabs
 {
     public final static CreativeTabEnergyConverters Instance = new CreativeTabEnergyConverters();
 
-    public CreativeTabEnergyConverters()
+    private CreativeTabEnergyConverters()
     {
         super("energy_converters");
     }
 
     @Override
-    public ItemStack getTabIconItem()
+    public ItemStack createIcon()
     {
         return new ItemStack(Item.getItemFromBlock(ModBlocks.getEnergyBridge()));
     }

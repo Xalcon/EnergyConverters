@@ -24,7 +24,8 @@ public class BlockEnergyBridge extends BlockBase implements ITileEntityProvider
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer()
+    {
         return BlockRenderLayer.TRANSLUCENT;
     }
 

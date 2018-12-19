@@ -10,6 +10,14 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
+def mc_version
+if(mc_version_patch > 0)
+    mc_version = "${mc_version_major}.${mc_version_minor}.${mc_version_patch}"
+else
+    mc_version = "${mc_version_major}.${mc_version_minor}"
+
+def mc_version_short = "${mc_version_major}.${mc_version_minor}"
+
 version = version_major + '.' + version_minor + '.' + version_patch + '.' + getBuildNumber()
 group= "net.xalcon.energyconverters" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "energyconverters_" + mc_version
@@ -28,23 +36,31 @@ minecraft {
 }
 
 repositories {
+
     maven { url = "http://maven.covers1624.net" } // COFH Mods
     maven { url = "http://maven.ic2.player.to/" }
-    maven { url 'http://maven.epoxide.xyz' } // Tesla
+    maven { url = "http://chickenbones.net/maven/" }
+    maven { url = 'http://maven.mcmoddev.com' } // Tesla
 	maven { url = "http://dvs1.progwml6.com/files/maven" } // JEI
+    maven { url = "https://minecraft.curseforge.com/api/maven/" }
     ivy { artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision].[ext]" }
 }
 
 dependencies {
     deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}"
-    deobfCompile "net.darkhax.tesla:Tesla-1.12:${tesla_version}"
-	deobfCompile "mezz.jei:jei_1.12:${jei_version}:api"
-    deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
-
-    //compile name: "buildcraft", version: "7.99.4"
+    deobfCompile "net.darkhax.tesla:Tesla-${mc_version_short}:${tesla_version}"
+    deobfCompile "cofh:RedstoneFlux:${mc_version_short}-${redstone_flux_version}:universal"
+    compile name: "buildcraft-all", version: "${buildcraft_version}"
 	
 	runtime "net.industrial-craft:industrialcraft-2:${ic2_version}:universal"
-	runtime "mezz.jei:jei_1.12:${jei_version}"
+	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "solar-village:SolarVillage:${mc_version}:${solar_village_version}"
+    runtime "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal"
+    runtime "cofh:CoFHCore:${mc_version}-${cofh_core_version}:universal"
+    runtime "cofh:CoFHWorld:${mc_version}-${cofh_world_version}:universal"
+    runtime "cofh:ThermalFoundation:${mc_version}-${thermal_foundation_version}:universal"
+    runtime "cofh:ThermalDynamics:${mc_version}-${thermal_dynamics_version}:universal"
+    runtime "cofh:ThermalExpansion:${mc_version}-${thermal_expansion_version}:universal"
 }
 
 processResources
@@ -67,6 +83,6 @@ processResources
     }
 }
 
-def getBuildNumber() {
+static def getBuildNumber() {
     return "$System.env.BUILD_NUMBER" != "null" ? "$System.env.BUILD_NUMBER" : "0"
 }
