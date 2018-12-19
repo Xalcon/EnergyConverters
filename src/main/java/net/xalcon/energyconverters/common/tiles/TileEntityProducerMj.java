@@ -40,12 +40,16 @@ public class TileEntityProducerMj extends TileEntityEnergyConvertersProducer imp
 			if(te == null) continue;
 			if (te.hasCapability(MjAPI.CAP_RECEIVER, facing.getOpposite()))
 			{
-				IMjReceiver energyStorage = te.getCapability(MjAPI.CAP_RECEIVER, facing.getOpposite());
-				if (energyStorage != null && energyStorage.canReceive())
+				IMjReceiver receiver = te.getCapability(MjAPI.CAP_RECEIVER, facing.getOpposite());
+				if (receiver != null && receiver.canReceive())
 				{
-					long o = (long) (this.getBridgeEnergyStored() / 10 * 1_000_000);
-					long v = energyStorage.receivePower(o, false);
-					this.retrieveEnergyFromBridge(o - v, false);
+					long requested = receiver.getPowerRequested();
+					if(requested > 0)
+					{
+						long available = (long)Math.min(this.getBridgeEnergyStored() / 10 * 1_000_000, requested);
+						long taken = receiver.receivePower(available, false);
+						this.retrieveEnergyFromBridge(available - taken, false);
+					}
 				}
 			}
 		}
