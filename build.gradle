@@ -36,12 +36,11 @@ minecraft {
 }
 
 repositories {
-
+    maven { url = "http://dvs1.progwml6.com/files/maven" } // JEI
     maven { url = "http://maven.covers1624.net" } // COFH Mods
     maven { url = "http://maven.ic2.player.to/" }
     maven { url = "http://chickenbones.net/maven/" }
     maven { url = 'http://maven.mcmoddev.com' } // Tesla
-	maven { url = "http://dvs1.progwml6.com/files/maven" } // JEI
     maven { url = "https://minecraft.curseforge.com/api/maven/" }
     ivy { artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision].[ext]" }
 }
@@ -50,6 +49,7 @@ dependencies {
     deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}"
     deobfCompile "net.darkhax.tesla:Tesla-${mc_version_short}:${tesla_version}"
     deobfCompile "cofh:RedstoneFlux:${mc_version_short}-${redstone_flux_version}:universal"
+    deobfCompile "gregtechce:gregtech:${mc_version}:${gregtechce_version}"
     compile name: "buildcraft-all", version: "${buildcraft_version}"
 	
 	runtime "net.industrial-craft:industrialcraft-2:${ic2_version}:universal"

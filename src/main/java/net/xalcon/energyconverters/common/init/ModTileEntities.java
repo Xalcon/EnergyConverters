@@ -33,11 +33,17 @@ public class ModTileEntities
 			GameRegistry.registerTileEntity(TileEntityProducerRf.class, new ResourceLocation(EnergyConverters.MOD_ID, "tileentity_producer_rf"));
 			GameRegistry.registerTileEntity(TileEntityConsumerRf.class, new ResourceLocation(EnergyConverters.MOD_ID, "tileentity_consumer_rf"));
 		}
-
+		
 		if (Loader.isModLoaded("buildcraftenergy"))
 		{
 			GameRegistry.registerTileEntity(TileEntityProducerMj.class, new ResourceLocation(EnergyConverters.MOD_ID, "tileentity_producer_mj"));
 			GameRegistry.registerTileEntity(TileEntityConsumerMj.class, new ResourceLocation(EnergyConverters.MOD_ID, "tileentity_consumer_mj"));
+		}
+		
+		if (Loader.isModLoaded("gregtech"))
+		{
+			GameRegistry.registerTileEntity(TileEntityProducerGTCE.class, new ResourceLocation(EnergyConverters.MOD_ID, "producer_gtce"));
+			GameRegistry.registerTileEntity(TileEntityConsumerGTCE.class, new ResourceLocation(EnergyConverters.MOD_ID, "consumer_gtce"));
 		}
 	}
 }
