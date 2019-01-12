@@ -3,6 +3,7 @@ package net.xalcon.energyconverters.common.tiles;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.xalcon.energyconverters.EnergyConverters;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 public class TileEntityEnergyBridge extends TileEntity
 {
@@ -24,9 +25,9 @@ public class TileEntityEnergyBridge extends TileEntity
 
 	public double addEnergy(double amountIn, boolean simulate)
 	{
-		double lossRate = 1.0 - EnergyConverters.getConfig().getConversionLoss();
+		double lossRate = 1.0 - (EnergyConvertersConfig.conversionLoss / 100d);
 		double amount = amountIn * lossRate;
-		double maxBuffer = EnergyConverters.getConfig().getBridgeEnergyBuffer();
+		double maxBuffer = EnergyConvertersConfig.bridgeEnergyBuffer;
 		if(amount + this.energyStored > maxBuffer)
 			amount = maxBuffer - this.energyStored;
 		if(!simulate)
@@ -51,6 +52,6 @@ public class TileEntityEnergyBridge extends TileEntity
 
 	public double getStoredEnergyMax()
 	{
-		return EnergyConverters.getConfig().getBridgeEnergyBuffer();
+		return EnergyConvertersConfig.bridgeEnergyBuffer;
 	}
 }

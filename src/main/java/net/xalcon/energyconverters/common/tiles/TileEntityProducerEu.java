@@ -13,6 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 @Optional.Interface(iface="ic2.api.energy.tile.IEnergySource", modid="ic2", striprefs=true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource
@@ -80,14 +81,14 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public double getOfferedEnergy()
 	{
-		return Math.min(getBridgeEnergyStored() / EnergyConverters.getConfig().getIc2Conversion(), this.maxEnergyUnits);
+		return Math.min(getBridgeEnergyStored() / EnergyConvertersConfig.ic2Conversion, this.maxEnergyUnits);
 	}
 
 	@Optional.Method(modid = "ic2")
 	@Override
 	public void drawEnergy(double v)
 	{
-		this.retrieveEnergyFromBridge(v * EnergyConverters.getConfig().getIc2Conversion(), false);
+		this.retrieveEnergyFromBridge(v * EnergyConvertersConfig.ic2Conversion, false);
 	}
 
 	@Optional.Method(modid = "ic2")

@@ -13,6 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2", striprefs = true)
 public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer implements ITickable, IEnergySink
@@ -106,7 +107,7 @@ public class TileEntityConsumerEu extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public double injectEnergy(EnumFacing enumFacing, double amount, double tier)
 	{
-		double ratio = EnergyConverters.getConfig().getIc2Conversion();
+		double ratio = EnergyConvertersConfig.ic2Conversion;
 		// return the amount of energy we didn't consume
 		return amount - (this.addEnergyToBridge(amount * ratio, false) / ratio);
 	}

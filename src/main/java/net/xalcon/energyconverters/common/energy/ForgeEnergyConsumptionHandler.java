@@ -2,6 +2,7 @@ package net.xalcon.energyconverters.common.energy;
 
 import net.minecraftforge.energy.IEnergyStorage;
 import net.xalcon.energyconverters.EnergyConverters;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 public class ForgeEnergyConsumptionHandler implements IEnergyStorage
 {
@@ -22,7 +23,7 @@ public class ForgeEnergyConsumptionHandler implements IEnergyStorage
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate)
 	{
-		double ratio = EnergyConverters.getConfig().getRfConversion();
+		double ratio = EnergyConvertersConfig.rfConversion;
 		return (int) (this.energyBridge.addEnergyToBridge(maxReceive * ratio, simulate) / ratio);
 	}
 
@@ -45,7 +46,7 @@ public class ForgeEnergyConsumptionHandler implements IEnergyStorage
 	@Override
 	public int getEnergyStored()
 	{
-		return (int) (this.energyBridge.getBridgeEnergyStored() / EnergyConverters.getConfig().getRfConversion());
+		return (int) (this.energyBridge.getBridgeEnergyStored() / EnergyConvertersConfig.feConversion);
 	}
 
 	/**
@@ -54,7 +55,7 @@ public class ForgeEnergyConsumptionHandler implements IEnergyStorage
 	@Override
 	public int getMaxEnergyStored()
 	{
-		return (int) (this.energyBridge.getBridgeEnergyStoredMax() / EnergyConverters.getConfig().getRfConversion());
+		return (int) (this.energyBridge.getBridgeEnergyStoredMax() / EnergyConvertersConfig.feConversion);
 	}
 
 	/**

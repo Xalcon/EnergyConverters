@@ -12,30 +12,18 @@ import org.apache.logging.log4j.Logger;
 @Mod(
         modid = EnergyConverters.MOD_ID,
         version = EnergyConverters.VERSION,
-        guiFactory = EnergyConverters.GUI_FACTORY,
         acceptedMinecraftVersions = "*"
 )
 public class EnergyConverters
 {
-    public static final String MOD_NAME = "EnergyConverters";
     public static final String MOD_ID = "energyconverters";
     public static final String VERSION = "@VERSION@";
-    public static final String GROUP = "net.xalcon.energyconverters";
-    public static final String GUI_FACTORY = GROUP + ".client.EnergyConvertersGuiFactory";
 
     public static Logger Log = LogManager.getLogger(MOD_ID);
-
-    private static EnergyConvertersConfig configHandler;
-
-    public static EnergyConvertersConfig getConfig()
-    {
-        return configHandler;
-    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         ModTileEntities.init();
-        configHandler = new EnergyConvertersConfig(event.getSuggestedConfigurationFile());
     }
 }

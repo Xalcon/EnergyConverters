@@ -3,6 +3,7 @@ package net.xalcon.energyconverters.common.energy;
 import net.darkhax.tesla.api.ITeslaConsumer;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 @Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaConsumer", modid = "tesla")
 public class TeslaEnergyConsumptionHandler implements ITeslaConsumer
@@ -18,7 +19,7 @@ public class TeslaEnergyConsumptionHandler implements ITeslaConsumer
 	@Optional.Method(modid = "tesla")
 	public long givePower(long power, boolean simulated)
 	{
-		double ratio = EnergyConverters.getConfig().getRfConversion();
+		double ratio = EnergyConvertersConfig.teslaConversion;
 		return (long)(energyBridge.addEnergyToBridge(power * ratio, simulated) / ratio);
 	}
 }

@@ -8,6 +8,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 @Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyProvider", modid = "redstoneflux", striprefs = true)
 public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer implements IEnergyProvider, ITickable
@@ -33,13 +34,13 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate)
 	{
-		return (int)(this.retrieveEnergyFromBridge(maxExtract, simulate) / EnergyConverters.getConfig().getRfConversion());
+		return (int)(this.retrieveEnergyFromBridge(maxExtract, simulate) / EnergyConvertersConfig.rfConversion);
 	}
 
 	@Override
 	public void update()
 	{
-		double ratio = EnergyConverters.getConfig().getRfConversion();
+		double ratio = EnergyConvertersConfig.rfConversion;
 		for (EnumFacing facing : EnumFacing.VALUES)
 		{
 			BlockPos pos = this.pos.offset(facing);

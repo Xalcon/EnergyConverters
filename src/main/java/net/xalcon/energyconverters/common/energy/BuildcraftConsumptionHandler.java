@@ -2,14 +2,17 @@ package net.xalcon.energyconverters.common.energy;
 
 import buildcraft.api.mj.IMjConnector;
 import buildcraft.api.mj.IMjReceiver;
+import buildcraft.api.mj.MjAPI;
 import buildcraft.api.mj.MjBattery;
 import net.minecraftforge.fml.common.Optional;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 import javax.annotation.Nonnull;
 
 @Optional.Interface(iface = "buildcraft.api.mj.IMjReceiver", modid = "buildcraftenergy")
 public class BuildcraftConsumptionHandler implements IMjReceiver
 {
+	private final static long requestPower = 1_000_000 * MjAPI.MJ;
 	private IEnergyBridgeInputAccessProvider energyBridge;
 
 	public BuildcraftConsumptionHandler(IEnergyBridgeInputAccessProvider energyBridge)
@@ -23,8 +26,7 @@ public class BuildcraftConsumptionHandler implements IMjReceiver
 	@Override
 	public long getPowerRequested()
 	{
-		// ITS OVER NINE THOUSAND!!
-		return 1_000_000_000_000L;
+		return requestPower;
 	}
 
 	/**
@@ -45,7 +47,7 @@ public class BuildcraftConsumptionHandler implements IMjReceiver
 	@Override
 	public long receivePower(long microJoules, boolean simulate)
 	{
-		return (int) this.energyBridge.addEnergyToBridge(microJoules / 1000000d * 10d, simulate);
+		return (int) this.energyBridge.addEnergyToBridge(microJoules / (double)MjAPI.MJ * EnergyConvertersConfig.mjConversion, simulate);
 	}
 
 	/**

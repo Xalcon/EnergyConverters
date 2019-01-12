@@ -7,6 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 import net.xalcon.energyconverters.common.energy.BuildcraftProductionHandler;
 
 import javax.annotation.Nullable;
@@ -46,7 +47,7 @@ public class TileEntityProducerMj extends TileEntityEnergyConvertersProducer imp
 					long requested = receiver.getPowerRequested();
 					if(requested > 0)
 					{
-						long available = (long)Math.min(this.getBridgeEnergyStored() / 10 * 1_000_000, requested);
+						long available = (long)Math.min(this.getBridgeEnergyStored() / EnergyConvertersConfig.mjConversion * MjAPI.MJ, requested);
 						long taken = receiver.receivePower(available, false);
 						this.retrieveEnergyFromBridge(available - taken, false);
 					}

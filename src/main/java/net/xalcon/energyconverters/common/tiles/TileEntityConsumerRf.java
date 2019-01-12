@@ -4,6 +4,7 @@ import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
+import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 @Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyReceiver", modid = "redstoneflux", striprefs = true)
 public class TileEntityConsumerRf extends TileEntityEnergyConvertersConsumer implements IEnergyReceiver
@@ -29,7 +30,7 @@ public class TileEntityConsumerRf extends TileEntityEnergyConvertersConsumer imp
 	@Override
 	public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
 	{
-		double ratio = EnergyConverters.getConfig().getRfConversion();
+		double ratio = EnergyConvertersConfig.rfConversion;
 		return (int) (this.addEnergyToBridge(maxReceive * ratio, simulate) / ratio);
 	}
 }
