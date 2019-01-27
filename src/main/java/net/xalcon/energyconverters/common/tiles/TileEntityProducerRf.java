@@ -40,6 +40,7 @@ public class TileEntityProducerRf extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void update()
 	{
+		if (this.getWorld().isRemote) return;
 		double ratio = EnergyConvertersConfig.rfConversion;
 		for (EnumFacing facing : EnumFacing.VALUES)
 		{

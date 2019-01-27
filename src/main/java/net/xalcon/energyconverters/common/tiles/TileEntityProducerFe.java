@@ -30,6 +30,7 @@ public class TileEntityProducerFe extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public void update()
 	{
+		if (this.getWorld().isRemote) return;
 		for (EnumFacing facing : EnumFacing.VALUES)
 		{
 			BlockPos pos = this.pos.offset(facing);
