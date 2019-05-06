@@ -15,22 +15,10 @@
   ],
   "type": "forge:ore_shaped",
   "key": {
-    "P": {
-      "item": "buildcrafttransport:pipe_wood_item",
-      "data": 0
-    },
-    "S": {
-      "item": "#STONE"
-    },
-    "E": {
-      "item": "buildcraftcore:engine",
-      "data": 1
-    },
-    "G": {
-      "item": "#INGOTGOLD"
-    },
-    "I": {
-      "item": "buildcraftcore:gear_iron"
-    }
+    "P": { "item": "buildcrafttransport:pipe_wood_item", "data": 0 },
+    "S": { "item": "#STONE" },
+    "E": { "item": "buildcraftcore:engine", "data": 1 },
+    "G": { "item": "#INGOTGOLD" },
+    "I": { "ore": "gearIron", "type": "forge:ore_dict" }
   }
 }
