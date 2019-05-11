@@ -1,3 +1,7 @@
+### v1.3.0
+ - Feature freeze, Last 1.12.2 release (other than bugfixes)
+ - Add some tooltips to FE and RF blocks to hopefully reduce my support workload
+
 ### v1.2.1
  - Fix crash with Railcraft (and potentially other mods) due to update code running on the logical client.
 
