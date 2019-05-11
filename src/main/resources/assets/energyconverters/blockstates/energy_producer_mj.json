@@ -4,12 +4,12 @@
     "transform": "forge:default-block",
     "model": "cube_all",
     "textures": {
-      "all": "energyconverters:blocks/energy_producer_tr3",
+      "all": "energyconverters:blocks/energy_producer_tr4",
       "particle": "#all"
     }
   },
   "variants": {
-    "normal": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr3" } },
-    "inventory": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr3" } }
+    "normal": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr4" } },
+    "inventory": { "model": "cube_all", "textures": { "all": "energyconverters:blocks/energy_producer_tr4" } }
   }
 }

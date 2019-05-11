@@ -49,6 +49,10 @@ public class EnergyConvertersConfig
     @Config.RangeDouble(min = 0, max = 100)
     public static double conversionLoss = 0;
 
+    @Config.Comment("Controls if hints should be shown in the tooltip for certain problematic converter blocks. To modpack makers: Do not disable this without providing alternative hints.")
+    @Config.Name("showInfoTooltips")
+    public static boolean showInfoTooltips = true;
+
     @Mod.EventBusSubscriber
     private static class EventHandler
     {
