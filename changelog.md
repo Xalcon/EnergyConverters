@@ -1,4 +1,4 @@
-### v1.3.0
+### v1.3.1
  - Add russian translations (by kellixon)
 
 ### v1.3.0
