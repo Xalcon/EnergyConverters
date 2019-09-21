@@ -1,3 +1,6 @@
+### v1.3.2
+ - Changed soft dependency from Buildcraft:Energy to Buildcraft:Core to allow modpacks to not include Buildcraft:Energy [#49](https://github.com/Xalcon/EnergyConverters/issues/49)
+
 ### v1.3.1
  - Add russian translations (by kellixon)
 
