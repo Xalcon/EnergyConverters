@@ -9,7 +9,7 @@ import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 
 import javax.annotation.Nonnull;
 
-@Optional.Interface(iface = "buildcraft.api.mj.IMjReceiver", modid = "buildcraftenergy")
+@Optional.Interface(iface = "buildcraft.api.mj.IMjReceiver", modid = "buildcraftcore")
 public class BuildcraftConsumptionHandler implements IMjReceiver
 {
 	private final static long requestPower = 1_000_000 * MjAPI.MJ;

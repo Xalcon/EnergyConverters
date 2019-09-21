@@ -75,7 +75,7 @@ public class ModBlocks
             event.getRegistry().register(new BlockConsumerRf());
         }
 
-        if (Loader.isModLoaded("buildcraftenergy"))
+        if (Loader.isModLoaded("buildcraftcore"))
         {
             event.getRegistry().register(new BlockProducerMj());
             event.getRegistry().register(new BlockConsumerMj());
@@ -107,7 +107,7 @@ public class ModBlocks
             event.getRegistry().register(consumerRf.createItemBlock());
         }
 
-        if (Loader.isModLoaded("buildcraftenergy"))
+        if (Loader.isModLoaded("buildcraftcore"))
         {
             event.getRegistry().register(producerMj.createItemBlock());
             event.getRegistry().register(consumerMj.createItemBlock());
@@ -140,7 +140,7 @@ public class ModBlocks
             consumerRf.registerItemModel(Item.getItemFromBlock(consumerRf));
         }
 
-        if (Loader.isModLoaded("buildcraftenergy"))
+        if (Loader.isModLoaded("buildcraftcore"))
         {
             producerMj.registerItemModel(Item.getItemFromBlock(producerMj));
             consumerMj.registerItemModel(Item.getItemFromBlock(consumerMj));

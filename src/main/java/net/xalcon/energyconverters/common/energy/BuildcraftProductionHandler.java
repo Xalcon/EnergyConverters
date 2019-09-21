@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.Optional;
 
 import javax.annotation.Nonnull;
 
-@Optional.Interface(iface = "buildcraft.api.mj.IMjConnector", modid = "buildcraftenergy")
+@Optional.Interface(iface = "buildcraft.api.mj.IMjConnector", modid = "buildcraftcore")
 public class BuildcraftProductionHandler implements IMjConnector
 {
 	private IEnergyBridgeOutputAccessProvider energyBridge;

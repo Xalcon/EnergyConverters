@@ -34,7 +34,7 @@ public class ModTileEntities
 			GameRegistry.registerTileEntity(TileEntityConsumerRf.class, new ResourceLocation(EnergyConverters.MOD_ID, "tileentity_consumer_rf"));
 		}
 
-		if (Loader.isModLoaded("buildcraftenergy"))
+		if (Loader.isModLoaded("buildcraftcore"))
 		{
 			GameRegistry.registerTileEntity(TileEntityProducerMj.class, new ResourceLocation(EnergyConverters.MOD_ID, "tileentity_producer_mj"));
 			GameRegistry.registerTileEntity(TileEntityConsumerMj.class, new ResourceLocation(EnergyConverters.MOD_ID, "tileentity_consumer_mj"));
