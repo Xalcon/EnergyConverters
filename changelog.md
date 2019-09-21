@@ -1,3 +1,6 @@
+### v1.3.1
+ - Add russian translations (by kellixon)
+
 ### v1.3.0
  - Feature freeze, Last 1.12.2 release (other than bugfixes)
  - Add some tooltips to FE and RF blocks to hopefully reduce my support workload
