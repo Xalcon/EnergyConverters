@@ -1,3 +1,6 @@
+### v1.3.3
+ - Fix recipes still requiring Buildcraft:Energy (now they need Buildcraft:Core)
+
 ### v1.3.2
  - Changed soft dependency from Buildcraft:Energy to Buildcraft:Core to allow modpacks to not include Buildcraft:Energy [#49](https://github.com/Xalcon/EnergyConverters/issues/49)
 
