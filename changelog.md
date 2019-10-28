@@ -1,3 +1,7 @@
+### v1.3.4
+ - Fix energy duplication bug with IC2 when using multiple producers. The Producers now use an internal buffer that has
+   the same size as the energy tier. I.e. Lv buffers 32 EU, EV buffers 2048 EU, etc
+
 ### v1.3.3
  - Fix recipes still requiring Buildcraft:Energy (now they need Buildcraft:Core)
 

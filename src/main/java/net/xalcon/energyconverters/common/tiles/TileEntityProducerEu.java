@@ -81,9 +81,9 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 
 		if(this.internalBuffer < this.maxEnergyUnits && this.getBridgeEnergyStored() > 0)
 		{
-			double delta = this.maxEnergyUnits - this.internalBuffer;
+			double delta = (this.maxEnergyUnits - this.internalBuffer) * EnergyConvertersConfig.ic2Conversion;
 			double received = this.retrieveEnergyFromBridge(delta, false);
-			this.internalBuffer += received;
+			this.internalBuffer += received / EnergyConvertersConfig.ic2Conversion;
 		}
 	}
 
@@ -91,18 +91,17 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	@Override
 	public double getOfferedEnergy()
 	{
-		return this.internalBuffer / EnergyConvertersConfig.ic2Conversion;
+		return this.internalBuffer;
 	}
 
 	@Optional.Method(modid = "ic2")
 	@Override
 	public void drawEnergy(double v)
 	{
-		this.internalBuffer -= v * EnergyConvertersConfig.ic2Conversion;
+		this.internalBuffer -= v;
 		if(this.internalBuffer < 0) this.internalBuffer = 0;
 		else if(this.internalBuffer > this.maxEnergyUnits)
 			this.internalBuffer = this.maxEnergyUnits;
-		// this.retrieveEnergyFromBridge(v * EnergyConvertersConfig.ic2Conversion, false);
 	}
 
 	@Optional.Method(modid = "ic2")
