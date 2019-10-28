@@ -11,6 +11,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.xalcon.energyconverters.EnergyConverters;
 import net.xalcon.energyconverters.common.EnergyConvertersConfig;
@@ -18,6 +19,7 @@ import net.xalcon.energyconverters.common.EnergyConvertersConfig;
 @Optional.Interface(iface="ic2.api.energy.tile.IEnergySource", modid="ic2", striprefs=true)
 public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer implements ITickable, IEnergySource
 {
+	private double internalBuffer;
 	private double maxEnergyUnits;
 	private boolean addedToNet;
 	private int tier;
@@ -34,18 +36,19 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	{
 		super.readFromNBT(compound);
 		this.tier = compound.getInteger("tier");
+		this.internalBuffer = compound.getDouble("buffer");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		compound.setInteger("tier", this.tier);
+		compound.setDouble("buffer", this.internalBuffer);
 		return super.writeToNBT(compound);
 	}
 
 	private void onLoaded()
 	{
-		super.onLoad();
 		if(this.addedToNet || FMLCommonHandler.instance().getEffectiveSide().isClient() || !Info.isIc2Available()) return;
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 		this.addedToNet = true;
@@ -75,20 +78,31 @@ public class TileEntityProducerEu extends TileEntityEnergyConvertersProducer imp
 	{
 		if(this.getWorld().isRemote) return;
 		if(!addedToNet) onLoaded();
+
+		if(this.internalBuffer < this.maxEnergyUnits && this.getBridgeEnergyStored() > 0)
+		{
+			double delta = this.maxEnergyUnits - this.internalBuffer;
+			double received = this.retrieveEnergyFromBridge(delta, false);
+			this.internalBuffer += received;
+		}
 	}
 
 	@Optional.Method(modid = "ic2")
 	@Override
 	public double getOfferedEnergy()
 	{
-		return Math.min(getBridgeEnergyStored() / EnergyConvertersConfig.ic2Conversion, this.maxEnergyUnits);
+		return this.internalBuffer / EnergyConvertersConfig.ic2Conversion;
 	}
 
 	@Optional.Method(modid = "ic2")
 	@Override
 	public void drawEnergy(double v)
 	{
-		this.retrieveEnergyFromBridge(v * EnergyConvertersConfig.ic2Conversion, false);
+		this.internalBuffer -= v * EnergyConvertersConfig.ic2Conversion;
+		if(this.internalBuffer < 0) this.internalBuffer = 0;
+		else if(this.internalBuffer > this.maxEnergyUnits)
+			this.internalBuffer = this.maxEnergyUnits;
+		// this.retrieveEnergyFromBridge(v * EnergyConvertersConfig.ic2Conversion, false);
 	}
 
 	@Optional.Method(modid = "ic2")
