@@ -1,3 +1,6 @@
+### v1.3.5
+ - Fix MJ Consumer eating all the power, even with a full bridge. 
+
 ### v1.3.4
  - Fix energy duplication bug with IC2 when using multiple producers. The Producers now use an internal buffer that has
    the same size as the energy tier. I.e. Lv buffers 32 EU, EV buffers 2048 EU, etc
