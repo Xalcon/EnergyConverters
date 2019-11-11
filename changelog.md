@@ -1,3 +1,6 @@
+### v.1.3.6
+ - Fix MJ consumer for real this time. \**fingers crossed*\*
+
 ### v1.3.5
  - Fix MJ Consumer eating all the power, even with a full bridge. 
 

@@ -27,7 +27,8 @@ public class BuildcraftConsumptionHandler implements IMjReceiver
 	public long getPowerRequested()
 	{
 		double free = this.energyBridge.getBridgeEnergyStoredMax() - this.energyBridge.getBridgeEnergyStored();
-		return (long)(free * (double)MjAPI.MJ * EnergyConvertersConfig.mjConversion);
+		long requested =  (long)(free / EnergyConvertersConfig.mjConversion) * MjAPI.MJ;
+		return requested;
 	}
 
 	/**
@@ -48,9 +49,10 @@ public class BuildcraftConsumptionHandler implements IMjReceiver
 	@Override
 	public long receivePower(long microJoules, boolean simulate)
 	{
-		double availablePower = microJoules / (double)MjAPI.MJ * EnergyConvertersConfig.mjConversion;
-		double usedPower = this.energyBridge.addEnergyToBridge(availablePower, simulate) * (double)MjAPI.MJ * EnergyConvertersConfig.mjConversion;
-		return (long) (availablePower - usedPower);
+		double availablePowerFe = (microJoules / (double)MjAPI.MJ) * EnergyConvertersConfig.mjConversion;
+		double usedFe = this.energyBridge.addEnergyToBridge(availablePowerFe, simulate);
+		double usedMicroMj = (usedFe * (double)MjAPI.MJ) / EnergyConvertersConfig.mjConversion;
+		return (long) (microJoules - usedMicroMj);
 	}
 
 	/**
