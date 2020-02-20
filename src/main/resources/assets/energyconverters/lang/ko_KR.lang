@@ -1,0 +1,30 @@
+tile.energy_bridge.name=에너지 다리
+tile.energy_producer_eu.lv.name=저압 에너지 생산기 (IC2)
+tile.energy_producer_eu.mv.name=중압 에너지 생산기 (IC2)
+tile.energy_producer_eu.hv.name=고압 에너지 생산기 (IC2)
+tile.energy_producer_eu.ev.name=특고압 에너지 생산기 (IC2)
+tile.energy_producer_eu.iv.name=초고압 에너지 생산기 (IC2)
+tile.energy_consumer_eu.lv.name=저압 에너지 수용기 (IC2)
+tile.energy_consumer_eu.mv.name=중압 에너지 수용기 (IC2)
+tile.energy_consumer_eu.hv.name=고압 에너지 수용기 (IC2)
+tile.energy_consumer_eu.ev.name=특고압 에너지 수용기 (IC2)
+tile.energy_consumer_eu.iv.name=초고압 에너지 수용기 (IC2)
+
+tile.energy_producer_rf.name=RF 에너지 생산기
+tile.energy_consumer_rf.name=RF 에너지 수용기
+tile.energy_producer_fe.name=FE 에너지 생산기
+tile.energy_consumer_fe.name=FE 에너지 수용기
+
+tile.energy_producer_tesla.name=테슬라 에너지 생산기
+tile.energy_consumer_tesla.name=테슬라 에너지 수용기
+
+tile.energy_producer_mj.name=MJ 에너지 생산기
+tile.energy_consumer_mj.name=MJ 에너지 수용기
+
+itemGroup.energy_converters=에너지 변환
+
+energyconverters.energybridge.stored=저장된 에너지: %s
+
+energyconverters.rf_warning=§C불필요한 확률이 ~99%%에 달합니다! FE 변환기를 대신 사용하세요.§r
+energyconverters.mj_hint=§A이 블록에서 전력을 추출하려면 나무 전력 파이프를 사용하세요.§r
+energyconverters.fe_hint=§A"RF"가 필요한 모드의 ~99%%와 호환가능합니다.§r
