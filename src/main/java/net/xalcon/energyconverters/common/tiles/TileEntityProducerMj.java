@@ -48,7 +48,7 @@ public class TileEntityProducerMj extends TileEntityEnergyConvertersProducer imp
 					long requested = receiver.getPowerRequested();
 					if(requested > 0)
 					{
-						long availableMj = (long) Math.min(this.getBridgeEnergyStored() / EnergyConvertersConfig.mjConversion * MjAPI.MJ,requested);
+						long availableMj = (long) Math.min(this.getBridgeEnergyStored() / EnergyConvertersConfig.mjConversion * MjAPI.MJ, requested);
 						long usedMj = availableMj - receiver.receivePower(availableMj, false);
 						this.retrieveEnergyFromBridge(usedMj / (double) MjAPI.MJ * EnergyConvertersConfig.mjConversion, false);
 					}
