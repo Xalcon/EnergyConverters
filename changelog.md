@@ -1,3 +1,6 @@
+### v.1.3.7
+ - Fix MJ consumer once more (thanks to vladmarica)
+
 ### v.1.3.6
  - Fix MJ consumer for real this time. \**fingers crossed*\*
 
