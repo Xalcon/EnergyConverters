@@ -1,0 +1,32 @@
+#Energy Converters ver.1.12.2-1.3.7.30-jp
+#by Yamada Megane
+tile.energy_bridge.name=エネルギー変換ブリッジ
+tile.energy_producer_eu.lv.name=低圧EU出力機
+tile.energy_producer_eu.mv.name=中圧EU出力機
+tile.energy_producer_eu.hv.name=高圧EU出力機
+tile.energy_producer_eu.ev.name=超高圧EU出力機
+tile.energy_producer_eu.iv.name=超々高圧EU出力機
+tile.energy_consumer_eu.lv.name=低圧EU入力機
+tile.energy_consumer_eu.mv.name=中圧EU入力機
+tile.energy_consumer_eu.hv.name=高圧EU入力機
+tile.energy_consumer_eu.ev.name=超高圧EU入力機
+tile.energy_consumer_eu.iv.name=超々高圧EU入力機
+
+tile.energy_producer_rf.name=RF出力機
+tile.energy_consumer_rf.name=RF入力機
+tile.energy_producer_fe.name=FE出力機
+tile.energy_consumer_fe.name=FE入力機
+
+tile.energy_producer_tesla.name=テスラ出力機
+tile.energy_consumer_tesla.name=テスラ入力機
+
+tile.energy_producer_mj.name=MJ出力機
+tile.energy_consumer_mj.name=MJ入力機
+
+itemGroup.energy_converters=Energy Converters
+
+energyconverters.energybridge.stored=貯蔵エネルギー: %s
+
+energyconverters.rf_warning=§Cおそらく不要です。FE変換機を使いましょう。§r
+energyconverters.mj_hint=§Aエネルギーを取り出すには木の伝導パイプが必要です。§r
+energyconverters.fe_hint=§ARFを使用する～99％のMODと互換性あり§r
